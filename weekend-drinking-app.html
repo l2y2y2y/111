@@ -175,6 +175,33 @@
       font-size:14px;
       max-width:72%;
     }
+    .hero-card.compact{
+      padding:20px;
+      display:grid;
+      gap:12px;
+    }
+    .hero-stat-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+    .hero-stat{
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.1);
+      border:1px solid rgba(255,255,255,.12);
+      font-size:12px;
+      color:#fff;
+    }
+    .muted-copy{
+      margin:8px 0 0;
+      color:var(--ink-soft);
+      font-size:13px;
+      line-height:1.6;
+    }
+    .home-actions{
+      margin-top:0;
+    }
     .tag-row,.chip-row{
       display:flex;flex-wrap:wrap;gap:8px;
     }
@@ -244,6 +271,13 @@
       border-color:rgba(255,255,255,.24);
       box-shadow:0 10px 28px rgba(0,0,0,.22);
     }
+    .party-card .topline{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      margin-bottom:12px;
+    }
     .party-card .cover{
       height:132px;
       border-radius:18px;
@@ -310,6 +344,12 @@
       font-size:13px;
       line-height:1.7;
     }
+    .party-quick{
+      font-size:13px;
+      color:rgba(255,255,255,.92);
+      margin:0 0 8px;
+      font-weight:700;
+    }
     .party-meta{
       display:grid;
       grid-template-columns:1fr 1fr;
@@ -325,6 +365,9 @@
       font-size:14px;
       color:var(--ink);
       margin-top:2px;
+    }
+    .party-cta{
+      margin-top:12px;
     }
     .floating-card{
       margin-top:18px;
@@ -461,6 +504,35 @@
       font-size:18px;
     }
     .host-card p,.games-board p,.mine-card p{margin:0;color:var(--ink-soft);font-size:13px;line-height:1.7}
+    .host-current-card{
+      margin-bottom:16px;
+    }
+    .launch-summary{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+      margin-top:14px;
+    }
+    .host-party-pills{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+    .party-switch{
+      border:1px solid var(--line-strong);
+      background:rgba(255,255,255,.05);
+      color:var(--ink-soft);
+      padding:8px 12px;
+      border-radius:999px;
+      cursor:pointer;
+      font-size:12px;
+    }
+    .party-switch.active{
+      color:#fff;
+      background:linear-gradient(135deg, rgba(255,107,143,.22), rgba(159,115,255,.22));
+      border-color:rgba(255,255,255,.2);
+    }
     .stack{
       display:grid;gap:10px;margin-top:14px;
     }
@@ -667,6 +739,72 @@
       display:block;
     }
     .share-option strong{display:block;margin-bottom:5px}
+    .game-play-area{
+      margin-top:14px;
+      display:grid;
+      gap:12px;
+    }
+    .play-card{
+      border-radius:20px;
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      padding:18px;
+    }
+    .play-title{
+      font-size:22px;
+      font-weight:800;
+      line-height:1.25;
+      margin:8px 0;
+    }
+    .play-copy{
+      font-size:14px;
+      color:var(--ink-soft);
+      line-height:1.8;
+    }
+    .play-tags{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-top:12px;
+    }
+    .prompt-index{
+      color:var(--accent-3);
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      font-weight:700;
+    }
+    .dice-row{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:12px;
+      margin-top:12px;
+    }
+    .dice-face{
+      min-height:104px;
+      border-radius:18px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      display:grid;
+      place-items:center;
+      font-size:46px;
+      font-weight:800;
+    }
+    .small-note{
+      margin-top:12px;
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.7;
+    }
+    .empty-stack{
+      padding:14px;
+      border-radius:18px;
+      border:1px dashed rgba(255,255,255,.16);
+      color:var(--ink-soft);
+      font-size:13px;
+      line-height:1.7;
+      background:rgba(255,255,255,.03);
+    }
     .toast{
       position:absolute;
       left:50%;
@@ -721,7 +859,7 @@
       color:var(--muted);
     }
     @media (max-width:390px){
-      .form-row,.info-grid,.metric-row{grid-template-columns:1fr}
+      .form-row,.info-grid,.metric-row,.launch-summary,.dice-row{grid-template-columns:1fr}
       .hero-card .title,.hero-card .sub,.detail-hero p{max-width:none}
       h1{font-size:28px}
     }
@@ -745,16 +883,16 @@
           <main id="mainContent">
             <section class="screen-view active" data-view="home">
               <div class="hero">
-                <div class="eyebrow">Drink with vibe</div>
-                <h1>今晚的酒局，要有点氛围，也要真能成局。</h1>
-                <p>一个适合在微信里分享、报名、补位和带气氛的周末拼局工具。默认按日维度给你看“今晚能去什么局”。</p>
-                <div class="hero-card">
-                  <div class="title">今晚 20:30，三里屯精酿轻松局</div>
-                  <div class="sub">新手友好，适合第一次出来喝一杯的人。还差 2 人成局，附带破冰问答和外链电子骰子玩法。</div>
-                  <div class="tag-row">
-                    <span class="tag">微醺轻社交</span>
-                    <span class="tag">还差 2 人</span>
-                    <span class="tag">适合微信转发</span>
+                <div class="eyebrow">Tonight's plan</div>
+                <h1>三秒挑一场，五分钟把人约起来。</h1>
+                <p class="muted-copy">先看今晚最值得发的一场，再决定报名还是自己开局。</p>
+                <div class="hero-card compact">
+                  <div class="title" id="heroSpotlightTitle">今晚先看这场</div>
+                  <div class="sub" id="heroSpotlightMeta">时间、地点、名额和玩法会在这里直接说清楚。</div>
+                  <div class="hero-stat-row" id="heroSpotlightTags"></div>
+                  <div class="btn-row home-actions">
+                    <button class="primary-btn" id="heroSpotlightBtn">查看并报名</button>
+                    <button class="ghost-btn" id="heroCreateBtn">自己发一局</button>
                   </div>
                 </div>
               </div>
@@ -786,8 +924,10 @@
               <div class="hero">
                 <div class="eyebrow">Host desk</div>
                 <h1>主理人工作台</h1>
-                <p>发局、看名单、做确认和补位分享都放在同一条路径里，不让主理人来回跳页面。</p>
+                <p class="muted-copy">发局后会直接生成可分享页面，再继续看报名、补位和挂玩法。</p>
               </div>
+
+              <div class="host-card host-current-card" id="hostCurrentCard"></div>
 
               <div class="host-card">
                 <h3>快速发起一局</h3>
@@ -848,24 +988,24 @@
               <div class="hero">
                 <div class="eyebrow">Party games</div>
                 <h1>游戏与气氛工具</h1>
-                <p>游戏是为了让局更好玩，不是为了抢主流程。这里同时支持内置玩法、外链玩法和日维度推荐。</p>
+                <p class="muted-copy">这一版先只放真的能玩的 3 个，点开就能直接开始，不再做打不开的占位入口。</p>
               </div>
 
               <div class="games-board">
                 <h3>今日玩法榜</h3>
-                <p>按自然日刷新，优先推荐无需复杂教学、适合酒局快速开玩的玩法。</p>
+                <p>按自然日自动换顺序，优先把适合今晚这场的玩法顶上来。</p>
                 <div class="stack" id="dailyGames"></div>
               </div>
 
               <div class="games-board">
-                <h3>内置轻玩法</h3>
-                <p>在当前 H5 内即可打开，适合开场破冰和中段气氛加热。</p>
+                <h3>开场破冰</h3>
+                <p>适合陌生人坐下第一轮，低门槛，不用主持人讲太多规则。</p>
                 <div class="stack" id="innerGames"></div>
               </div>
 
               <div class="games-board">
-                <h3>外链玩法</h3>
-                <p>适合复杂一点的多人电子玩法。跳转前会先给出说明，并记录跳出与回流。</p>
+                <h3>桌上快玩</h3>
+                <p>局中气氛已经起来以后，直接点开就能继续玩，不需要跳出当前页。</p>
                 <div class="stack" id="outerGames"></div>
               </div>
             </section>
@@ -930,10 +1070,10 @@
         <div class="modal-layer" id="shareModal">
           <div class="sheet">
             <div class="sheet-handle"></div>
-            <h3 class="sheet-title">微信分享模拟</h3>
-            <p class="sheet-desc">实际接入时，这里会由微信 JS-SDK 配置分享标题、描述、封面和来源参数。当前版本提供文案和场景预览，用于验收分享路径。</p>
+            <h3 class="sheet-title">分享这场局</h3>
+            <p class="sheet-desc">点一下就复制文案。先发好友，再发群补位，转化会更高。</p>
             <div class="share-list" id="shareList"></div>
-            <div class="note">验收点：分享信息要能表达主题、时间、地点、剩余名额和酒局氛围。</div>
+            <div class="small-note">默认给你准备了好友、朋友圈和群补位 3 种话术。</div>
             <div class="btn-row">
               <button class="ghost-btn" data-close="shareModal">关闭</button>
             </div>
@@ -946,6 +1086,7 @@
             <h3 class="sheet-title" id="gameModalTitle">打开玩法</h3>
             <p class="sheet-desc" id="gameModalDesc"></p>
             <div class="metric-row" id="gameMetrics"></div>
+            <div class="game-play-area" id="gamePlayArea"></div>
             <div class="btn-row">
               <button class="ghost-btn" data-close="gameModal">返回当前局</button>
               <button class="primary-btn" id="gameActionBtn">开始</button>
@@ -960,122 +1101,171 @@
 
   <script>
     (function(){
+      const DRAFT_KEY = 'weekend-drinking-host-draft';
       const state = {
         currentView: 'home',
         currentFeed: 'today',
         currentFilter: '',
         selectedPartyId: 'p1',
         hostFilter: 'pending',
-        signupStatus: 'open',
-        signups: [
-          { id: 's1', name: '阿宁', contact: 'aning_wechat', intro: '精酿爱好者，想认识点新朋友。', preference: '精酿', status: 'pending', eta: '20:20 可到' },
-          { id: 's2', name: 'Luna', contact: 'luna-88', intro: '想找个舒服一点的局喝点鸡尾酒。', preference: '鸡尾酒', status: 'confirmed', eta: '19:55 可到' },
-          { id: 's3', name: 'K', contact: 'k_313', intro: '会晚一点到，能接受候补。', preference: '威士忌', status: 'waitlist', eta: '20:40 后到' }
-        ],
-        draftSaved: false
+        draftSaved: false,
+        viewerStatus: {},
+        latestSignupIdByParty: {},
+        activeGameId: null,
+        currentPlay: null,
+        shareItems: []
       };
 
       const parties = [
         {
           id: 'p1',
           feed: 'today',
-          cover: '',
           name: '周五精酿轻松局',
-          desc: '一个适合第一次来酒局的人，边喝边聊，别太端着。前半场用轻破冰问答开场，后半场可切电子骰子外链玩法。',
+          desc: '先用破冰问答卡让第一次见面的人开口，再切真心话抽卡继续拉近距离。适合想喝一杯、又不想社交压力太大的人。',
           time: '今晚 20:30',
           venue: '三里屯某精酿吧',
           budget: '120-160 / 人',
-          quota: '还差 2 人',
-          quotaLabel: '还差 2 人',
-          tags: ['新手友好', '精酿', '破冰玩法'],
+          tags: ['新手友好', '精酿', '破冰'],
           vibe: '夜色、木头吧台、说话不用太大声的那种局。',
           fit: '第一次来线下局也不尴尬的人',
           theme: '微醺轻社交',
           organizer: 'Mika',
           coverClass: '',
-          share: {
-            friend: '周五精酿轻松局，今晚 20:30，三里屯，还差 2 人成局。第一次来也不会尴尬。',
-            timeline: '今晚有个新手友好的精酿局，三里屯见，还差两个人。'
-          }
+          capacity: 8,
+          baseJoined: 5,
+          attachedGames: ['icebreaker', 'truth'],
+          createdAt: Date.now() - 1000 * 60 * 60 * 4
         },
         {
           id: 'p2',
           feed: 'today',
           name: '威士忌入门慢喝局',
-          desc: '不是拼酒，节奏慢一点，主理人会带一轮入门品鉴，适合认真喝点东西的人。',
+          desc: '不是拼酒，节奏慢一点。主理人会带一轮入门品鉴，后面用电子骰子做轻互动，避免整场都太端着。',
           time: '今晚 21:00',
           venue: '国贸附近酒馆',
           budget: '180-220 / 人',
-          quota: '可报名',
-          quotaLabel: '可报名',
           tags: ['威士忌', '慢聊', '适合进阶'],
           vibe: '灯光偏暗，杯里内容比音量更重要。',
           fit: '想认真试点东西的人',
           theme: '认真喝',
           organizer: 'Ken',
           coverClass: 'alt-1',
-          share: {
-            friend: '今晚 21:00 国贸威士忌入门慢喝局，可报名，主理人会带一轮基础品鉴。',
-            timeline: '如果你想认真喝点东西，今晚这局可能刚好。'
-          }
+          capacity: 6,
+          baseJoined: 3,
+          attachedGames: ['dice'],
+          createdAt: Date.now() - 1000 * 60 * 60 * 2
         },
         {
           id: 'p3',
           feed: 'tomorrow',
           name: '周六 rooftop 鸡尾酒局',
-          desc: '周末晚风局，穿得好看一点也没关系。先喝一轮轻鸡尾酒，再慢慢聊开。',
+          desc: '周末晚风局，穿得好看一点也没关系。适合先拍照，再慢慢聊开，尾声用真心话抽卡补一轮互动。',
           time: '明晚 19:30',
           venue: '工体 rooftop 酒吧',
           budget: '160-220 / 人',
-          quota: '已报 5/8',
-          quotaLabel: '已报 5/8',
           tags: ['鸡尾酒', '夜景', '适合拍照'],
           vibe: '风和灯都比人多一点，适合把周末打开。',
           fit: '想要一点氛围感的人',
           theme: '夜景微醺',
           organizer: 'Cici',
           coverClass: 'alt-2',
-          share: {
-            friend: '周六 rooftop 鸡尾酒局，已经 5/8，氛围很好，适合带朋友一起来。',
-            timeline: '周六晚风和鸡尾酒都准备好了，就差你。'
-          }
+          capacity: 8,
+          baseJoined: 5,
+          attachedGames: ['truth', 'dice'],
+          createdAt: Date.now() - 1000 * 60 * 60
         },
         {
           id: 'p4',
           feed: 'week',
           name: '女生友好微醺聊天局',
-          desc: '控制人数和噪音，让第一次来的人也不必硬社交。适合想认识人但不想太累的局。',
+          desc: '控制人数和噪音，让第一次来的人也不必硬社交。先用破冰问答卡热场，再看现场决定要不要继续玩。',
           time: '周日 20:00',
           venue: '亮马桥附近小酒馆',
           budget: '100-140 / 人',
-          quota: '精选',
-          quotaLabel: '精选',
           tags: ['女生友好', '轻松', '新手友好'],
           vibe: '舒服、克制、不用演得很会玩。',
           fit: '第一次来酒局的人',
           theme: '轻聊天',
           organizer: 'Nana',
           coverClass: '',
-          share: {
-            friend: '周日女生友好微醺聊天局，适合第一次参加线下酒局的人。',
-            timeline: '如果你也想找个舒服点的局认识人，这场适合。'
-          }
+          capacity: 8,
+          baseJoined: 3,
+          attachedGames: ['icebreaker'],
+          createdAt: Date.now() - 1000 * 60 * 30
         }
       ];
 
-      const gameData = {
-        daily: [
-          { id: 'g1', title: '破冰问答卡', type: 'inner', desc: '最适合陌生人刚坐下的时候开场，不尬也不会太闹。', labels: ['3 分钟上手', '新手友好'], metrics: ['适合度 92', '今日热度 81', '分享转化 34%'] },
-          { id: 'g2', title: '电子骰子局', type: 'outer', desc: '节奏快，适合后半场拉高氛围，外链打开更稳定。', labels: ['外链玩法', '后半场'], metrics: ['适合度 85', '今日热度 76', '回流率 68%'] }
-        ],
-        inner: [
-          { id: 'i1', title: '真心话抽卡', type: 'inner', desc: '通过一句轻问题把气氛拉开，不需要主持人。', labels: ['内置', '破冰'], metrics: ['问题数量 48', '平均时长 4 分钟', '适合 4-8 人'] },
-          { id: 'i2', title: '喝酒轮盘', type: 'inner', desc: '适合局中段转场，不会因为规则太复杂冷下来。', labels: ['内置', '节奏快'], metrics: ['玩法轮次 12', '平均时长 6 分钟', '适合 3-10 人'] }
-        ],
-        outer: [
-          { id: 'o1', title: '多人电子酒桌玩法', type: 'outer', desc: '更复杂的多人联动玩法，适合强互动局。', labels: ['外链', '多人联动'], metrics: ['外链', '多人联动', '支持回流'] }
-        ]
+      const gameCatalog = {
+        icebreaker: {
+          id: 'icebreaker',
+          title: '破冰问答卡',
+          desc: '陌生人刚坐下时最有用的一套快问快答。规则很轻，适合开场 3 分钟把桌子热起来。',
+          labels: ['3 分钟上手', '新手友好'],
+          metrics: [
+            { num: '36', cap: '问题卡' },
+            { num: '4-10', cap: '适合人数' },
+            { num: '3 min', cap: '开场时长' }
+          ],
+          playType: 'cards',
+          promptTitle: '今晚先聊这个',
+          prompts: [
+            { title: '如果今晚只能带一种酒回家，你会选什么？', copy: '先从偏好聊起，比“你做什么工作”更容易打开场。', tags: ['轻松', '开场'] },
+            { title: '你最近一次觉得“今晚值了”是什么时刻？', copy: '适合把聊天从表面话题拉到更有记忆点的经历。', tags: ['故事感', '开场'] },
+            { title: '如果这桌要临时去续摊，你最想去哪种地方？', copy: '顺手把桌上的节奏和大家的偏好摸清楚。', tags: ['续摊', '投票'] },
+            { title: '今天你是来认真喝，还是来认真认识人？', copy: '一问就能知道今晚这场要往氛围局还是聊天局走。', tags: ['氛围', '选择题'] }
+          ]
+        },
+        truth: {
+          id: 'truth',
+          title: '真心话抽卡',
+          desc: '比普通真心话更轻一点，不尬、不冒犯，适合已经开始聊开后的第二轮互动。',
+          labels: ['内置即玩', '适合第二轮'],
+          metrics: [
+            { num: '48', cap: '题目数' },
+            { num: '4-8', cap: '适合人数' },
+            { num: '6 min', cap: '平均时长' }
+          ],
+          playType: 'cards',
+          promptTitle: '真心话来了',
+          prompts: [
+            { title: '你最想撤回的一次酒后发言是什么？', copy: '轻一点的真心话，通常能把桌上的笑点拉起来。', tags: ['轻社死', '好笑'] },
+            { title: '如果给最近的自己取一个酒单名，会叫什么？', copy: '适合从情绪切入，不会过于私密。', tags: ['情绪', '创意'] },
+            { title: '你第一次觉得“这个人还挺有意思”的瞬间通常是什么？', copy: '很适合让桌上开始出现认真一点的交流。', tags: ['关系', '观察'] },
+            { title: '你最近最想庆祝、但还没庆祝的一件事是什么？', copy: '容易让大家自然接住话题，也能形成后续祝酒点。', tags: ['庆祝', '延展'] }
+          ]
+        },
+        dice: {
+          id: 'dice',
+          title: '电子骰子',
+          desc: '两颗骰子直接掷，适合局中段转场。比外链更稳，点开就能玩。',
+          labels: ['桌上快玩', '节奏快'],
+          metrics: [
+            { num: '2', cap: '骰子' },
+            { num: '11', cap: '判定结果' },
+            { num: '无限', cap: '可循环' }
+          ],
+          playType: 'dice',
+          rules: {
+            2: '双 1，桌上每个人都要说一句今晚最离谱的事。',
+            3: '低点数，掷骰的人自己喝一口并指定下一个提问人。',
+            4: '点数偏低，右手边的人回答一个轻问题。',
+            5: '平稳局，任选一个人分享最近一次想逃离的社交场景。',
+            6: '正中间，桌上所有人一起碰杯。',
+            7: 'Lucky seven，掷骰的人可以指定一位今天最会聊天的人。',
+            8: '偏高点数，左手边的人讲一个近期开心时刻。',
+            9: '节奏拉起来，指定两个人互问一个问题。',
+            10: '高点数，掷骰的人可以跳过自己并安排别人喝一口。',
+            11: '差一点满分，请桌上最安静的人先开口。',
+            12: '双 6，全桌一起给今晚起一个局名。'
+          }
+        }
       };
+
+      state.signups = [
+        { id: 's1', partyId: 'p1', name: '阿宁', contact: 'aning_wechat', intro: '精酿爱好者，想认识点新朋友。', preference: '精酿', status: 'pending', eta: '20:20 可到' },
+        { id: 's2', partyId: 'p1', name: 'Luna', contact: 'luna-88', intro: '想找个舒服一点的局喝点鸡尾酒。', preference: '鸡尾酒', status: 'confirmed', eta: '19:55 可到' },
+        { id: 's3', partyId: 'p1', name: 'K', contact: 'k_313', intro: '会晚一点到，能接受候补。', preference: '威士忌', status: 'waitlist', eta: '20:40 后到' }
+      ];
 
       const els = {
         views: Array.from(document.querySelectorAll('.screen-view')),
@@ -1089,17 +1279,34 @@
         dailyGames: document.getElementById('dailyGames'),
         innerGames: document.getElementById('innerGames'),
         outerGames: document.getElementById('outerGames'),
-        signupModal: document.getElementById('signupModal'),
-        shareModal: document.getElementById('shareModal'),
-        gameModal: document.getElementById('gameModal'),
+        hostCurrentCard: document.getElementById('hostCurrentCard'),
         toast: document.getElementById('toast'),
         shareList: document.getElementById('shareList'),
         signupResult: document.getElementById('signupResult'),
         gameModalTitle: document.getElementById('gameModalTitle'),
         gameModalDesc: document.getElementById('gameModalDesc'),
         gameMetrics: document.getElementById('gameMetrics'),
-        gameActionBtn: document.getElementById('gameActionBtn')
+        gamePlayArea: document.getElementById('gamePlayArea'),
+        gameActionBtn: document.getElementById('gameActionBtn'),
+        heroSpotlightTitle: document.getElementById('heroSpotlightTitle'),
+        heroSpotlightMeta: document.getElementById('heroSpotlightMeta'),
+        heroSpotlightTags: document.getElementById('heroSpotlightTags'),
+        heroSpotlightBtn: document.getElementById('heroSpotlightBtn'),
+        heroCreateBtn: document.getElementById('heroCreateBtn')
       };
+
+      function ensurePartyData(party){
+        if(!party.attachedGames || !party.attachedGames.length){
+          party.attachedGames = ['icebreaker'];
+        }
+        party.capacity = Number(party.capacity) || 8;
+        party.baseJoined = Number(party.baseJoined) || 0;
+        party.createdAt = party.createdAt || Date.now();
+        party.share = buildShare(party);
+        return party;
+      }
+
+      parties.forEach(ensurePartyData);
 
       function showToast(text){
         els.toast.textContent = text;
@@ -1108,8 +1315,12 @@
         showToast.timer = setTimeout(() => els.toast.classList.remove('show'), 1800);
       }
 
-      function getSelectedParty(){
-        return parties.find(p => p.id === state.selectedPartyId) || parties[0];
+      function openModal(id){
+        document.getElementById(id).classList.add('open');
+      }
+
+      function closeModal(id){
+        document.getElementById(id).classList.remove('open');
       }
 
       function switchView(view){
@@ -1118,19 +1329,85 @@
         els.navBtns.forEach(btn => btn.classList.toggle('active', btn.dataset.nav === view));
       }
 
-      function renderPartyList(){
-        let list = parties.filter(p => p.feed === state.currentFeed || (state.currentFeed === 'week' && p.feed === 'week'));
-        if(state.currentFeed === 'today'){ list = parties.filter(p => p.feed === 'today'); }
-        if(state.currentFeed === 'tomorrow'){ list = parties.filter(p => p.feed === 'tomorrow'); }
-        if(state.currentFeed === 'week'){ list = parties.filter(p => p.feed === 'week'); }
+      function getSelectedParty(){
+        return parties.find(party => party.id === state.selectedPartyId) || parties[0];
+      }
+
+      function getPartyStats(party){
+        const partySignups = state.signups.filter(item => item.partyId === party.id);
+        const pending = partySignups.filter(item => item.status === 'pending').length;
+        const confirmed = partySignups.filter(item => item.status === 'confirmed').length;
+        const waitlist = partySignups.filter(item => item.status === 'waitlist').length;
+        const joined = Math.min(party.capacity, party.baseJoined + confirmed);
+        const remain = Math.max(party.capacity - joined, 0);
+        const quotaText = remain > 0 ? `还差 ${remain} 人` : (waitlist > 0 ? '已满，可候补' : '已满员');
+        return { pending, confirmed, waitlist, joined, remain, quotaText };
+      }
+
+      function buildShare(party){
+        const stats = getPartyStats(party);
+        const gameNames = party.attachedGames.map(id => gameCatalog[id]?.title).filter(Boolean);
+        return {
+          friend: `${party.name}｜${party.time}，${party.venue}，${stats.quotaText}。${party.tags[0] || '今晚有局'}，${gameNames[0] ? `自带 ${gameNames[0]}` : '点开就能报名'}。`,
+          timeline: `${party.time} 的 ${party.name}，${party.vibe} ${stats.remain > 0 ? `现在 ${stats.quotaText}` : '现在已满，可候补'}`,
+          group: `${party.time} ${party.name}，地点 ${party.venue}，${stats.quotaText}，适合 ${party.fit}。想来一起喝一杯的直接报。`
+        };
+      }
+
+      function inferFeed(time){
+        if(/明|tomorrow/i.test(time)) return 'tomorrow';
+        if(/周|星期|本周/i.test(time)) return 'week';
+        return 'today';
+      }
+
+      function getVisibleParties(){
+        let list = parties.filter(party => party.feed === state.currentFeed);
         if(state.currentFilter){
-          list = list.filter(p => p.tags.includes(state.currentFilter));
+          list = list.filter(party => party.tags.includes(state.currentFilter));
         }
+        return list.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+      }
+
+      function getDailyGames(){
+        const rotation = ['icebreaker', 'truth', 'dice'];
+        const offset = new Date().getDate() % rotation.length;
+        return rotation.map((_, index) => gameCatalog[rotation[(offset + index) % rotation.length]]);
+      }
+
+      function copyText(text){
+        if(navigator.clipboard && navigator.clipboard.writeText){
+          navigator.clipboard.writeText(text).then(() => showToast('文案已复制')).catch(() => showToast('复制失败，请手动长按'));
+          return;
+        }
+        showToast('当前环境不支持自动复制，请手动长按');
+      }
+
+      function renderHeroSpotlight(){
+        const party = getVisibleParties()[0] || parties[0];
+        const stats = getPartyStats(party);
+        const gameNames = party.attachedGames.map(id => gameCatalog[id]?.title).filter(Boolean);
+        els.heroSpotlightTitle.textContent = party.name;
+        els.heroSpotlightMeta.textContent = `${party.time} · ${party.venue} · ${stats.quotaText}`;
+        els.heroSpotlightTags.innerHTML = [
+          party.theme,
+          party.tags[0],
+          gameNames[0] || '点开可玩'
+        ].filter(Boolean).map(text => `<span class="hero-stat">${text}</span>`).join('');
+        els.heroSpotlightBtn.onclick = () => {
+          state.selectedPartyId = party.id;
+          renderAll();
+          switchView('detail');
+        };
+      }
+
+      function renderPartyList(){
+        const list = getVisibleParties();
+        renderHeroSpotlight();
         if(!list.length){
           els.partyList.innerHTML = `
             <div class="floating-card">
-              <div class="section-title" style="font-size:18px">这一组暂时没找到合适的局</div>
-              <p class="body-text" style="margin-top:8px">你可以切到其他日期层级，或者直接在主理人页发起一局。</p>
+              <div class="section-title" style="font-size:18px">这组条件下还没有合适的局</div>
+              <p class="body-text" style="margin-top:8px">你可以切到别的日期看看，或者直接发起一局。</p>
               <div class="btn-row">
                 <button class="ghost-btn" id="resetFilterBtn">清空筛选</button>
                 <button class="primary-btn" id="goHostBtn">去发起一局</button>
@@ -1139,56 +1416,81 @@
           `;
           document.getElementById('resetFilterBtn').onclick = () => {
             state.currentFilter = '';
-            els.feedTabs.forEach(btn => btn.classList.remove('active'));
-            els.feedTabs.find(btn => btn.dataset.feed === state.currentFeed)?.classList.add('active');
+            state.currentFeed = 'today';
+            els.feedTabs.forEach(tab => tab.classList.remove('active'));
+            document.querySelector('#feedTabs [data-feed="today"]')?.classList.add('active');
             renderPartyList();
           };
           document.getElementById('goHostBtn').onclick = () => switchView('host');
           return;
         }
-        els.partyList.innerHTML = list.map(p => `
-          <article class="party-card ${state.selectedPartyId === p.id ? 'selected' : ''}" data-party-id="${p.id}">
-            <div class="cover ${p.coverClass || ''}">
-              <div class="cover-note">
-                <div class="vibe">${p.vibe}</div>
-                <div class="quota">${p.quotaLabel}</div>
+
+        els.partyList.innerHTML = list.map(party => {
+          const stats = getPartyStats(party);
+          const gameNames = party.attachedGames.map(id => gameCatalog[id]?.title).filter(Boolean).slice(0, 2).join(' · ');
+          return `
+            <article class="party-card ${state.selectedPartyId === party.id ? 'selected' : ''}" data-party-id="${party.id}">
+              <div class="topline">
+                <span class="tag">${party.theme}</span>
+                <span class="quota">${stats.quotaText}</span>
               </div>
-            </div>
-            <div class="name">${p.name}</div>
-            <p class="desc">${p.desc}</p>
-            <div class="tag-row">${p.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>
-            <div class="party-meta">
-              <div class="item">时间<strong>${p.time}</strong></div>
-              <div class="item">地点<strong>${p.venue}</strong></div>
-              <div class="item">预算<strong>${p.budget}</strong></div>
-              <div class="item">适合谁<strong>${p.fit}</strong></div>
-            </div>
-          </article>
-        `).join('');
+              <div class="name">${party.name}</div>
+              <div class="party-quick">${party.time} · ${party.venue}</div>
+              <p class="desc">${party.vibe}</p>
+              <div class="tag-row">${party.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>
+              <div class="party-meta">
+                <div class="item">今晚玩法<strong>${gameNames || '可稍后再挂'}</strong></div>
+                <div class="item">预算<strong>${party.budget}</strong></div>
+              </div>
+              <div class="mini-actions party-cta">
+                <button data-card-action="detail" data-party-id="${party.id}">看详情</button>
+                <button class="ok" data-card-action="signup" data-party-id="${party.id}">${stats.remain > 0 ? '立即报名' : '去候补'}</button>
+              </div>
+            </article>
+          `;
+        }).join('');
+
         Array.from(els.partyList.querySelectorAll('[data-party-id]')).forEach(card => {
           card.addEventListener('click', () => {
             state.selectedPartyId = card.dataset.partyId;
-            renderPartyList();
-            renderDetail();
+            renderAll();
             switchView('detail');
           });
+        });
+
+        Array.from(els.partyList.querySelectorAll('[data-card-action]')).forEach(btn => {
+          btn.onclick = (event) => {
+            event.stopPropagation();
+            state.selectedPartyId = btn.dataset.partyId;
+            renderAll();
+            if(btn.dataset.cardAction === 'signup'){
+              switchView('detail');
+              openModal('signupModal');
+              return;
+            }
+            switchView('detail');
+          };
         });
       }
 
       function renderDetail(){
         const party = getSelectedParty();
-        const signupStatusMap = {
-          open: { text: party.quotaLabel, dot: 'var(--yellow)' },
+        const stats = getPartyStats(party);
+        const viewerStatus = state.viewerStatus[party.id] || 'open';
+        const statusInfo = {
+          open: { text: stats.quotaText, dot: 'var(--yellow)' },
           pending: { text: '你已报上，待主理人确认', dot: 'var(--accent-3)' },
           confirmed: { text: '你已确认，可直接去集合', dot: 'var(--green)' },
-          waitlist: { text: '你在候补中，有空位会立刻通知', dot: 'var(--yellow)' }
-        };
-        const statusInfo = signupStatusMap[state.signupStatus] || signupStatusMap.open;
+          waitlist: { text: '你已进入候补，有空位会提醒', dot: 'var(--yellow)' }
+        }[viewerStatus];
+
+        const attachedGames = party.attachedGames.map(id => gameCatalog[id]).filter(Boolean);
+
         els.detailView.innerHTML = `
           <div class="hero">
-            <div class="eyebrow">Party detail</div>
-            <h1>局详情</h1>
-            <p>分享进来的用户会直接看到这页。首屏先告诉他这是什么局、值不值得来、还能不能报。</p>
+            <div class="eyebrow">Tonight's party</div>
+            <h1>${party.name}</h1>
+            <p class="muted-copy">${party.vibe}</p>
           </div>
           <div class="detail-hero">
             <div class="detail-hero-content">
@@ -1196,8 +1498,8 @@
                 <span class="tag">${party.theme}</span>
                 <span class="tag">主理人 ${party.organizer}</span>
               </div>
-              <h2>${party.name}</h2>
-              <p>${party.vibe}</p>
+              <h2>${party.time}</h2>
+              <p>${party.venue} · ${stats.quotaText}</p>
             </div>
           </div>
           <div class="status-badge">
@@ -1208,54 +1510,93 @@
             <div class="info-card"><div class="label">时间</div><div class="value">${party.time}</div></div>
             <div class="info-card"><div class="label">地点</div><div class="value">${party.venue}</div></div>
             <div class="info-card"><div class="label">预算</div><div class="value">${party.budget}</div></div>
-            <div class="info-card"><div class="label">适合谁</div><div class="value">${party.fit}</div></div>
+            <div class="info-card"><div class="label">已占位</div><div class="value">${stats.joined}/${party.capacity}</div></div>
           </div>
           <div class="pill-list">${party.tags.map(tag => `<span class="pill">${tag}</span>`).join('')}</div>
           <div class="body-text">${party.desc}</div>
           <div class="floating-card">
-            <div class="section-title" style="font-size:18px">玩法入口</div>
+            <div class="section-title" style="font-size:18px">今晚玩法</div>
             <div class="game-grid">
-              <div class="game-item">
-                <div>
-                  <strong>真心话抽卡</strong>
-                  <div class="copy">适合刚开场，3 分钟内把局热起来。</div>
+              ${attachedGames.map(game => `
+                <div class="game-item">
+                  <div>
+                    <strong>${game.title}</strong>
+                    <div class="copy">${game.desc}</div>
+                  </div>
+                  <button class="btn-mini" data-open-game="${game.id}">${game.playType === 'dice' ? '掷骰子' : '开始'}</button>
                 </div>
-                <button class="btn-mini" data-open-game="i1">开始</button>
-              </div>
-              <div class="game-item">
-                <div>
-                  <strong>电子骰子局</strong>
-                  <div class="copy">外链玩法，适合局的后半场。</div>
-                </div>
-                <button class="btn-mini" data-open-game="o1">去玩</button>
-              </div>
+              `).join('')}
             </div>
           </div>
           <div class="btn-row">
-            <button class="ghost-btn" id="detailShareBtn">分享这场局</button>
-            <button class="primary-btn" id="detailActionBtn">${state.signupStatus === 'open' ? '立即报名' : state.signupStatus === 'pending' ? '查看状态' : '查看集合信息'}</button>
+            <button class="ghost-btn" id="detailShareBtn">转发补位</button>
+            <button class="primary-btn" id="detailActionBtn">${viewerStatus === 'open' ? '立即报名' : viewerStatus === 'pending' ? '查看状态' : viewerStatus === 'confirmed' ? '查看集合信息' : '查看候补状态'}</button>
           </div>
-          <div class="note">验收点：详情页首屏已同时提供酒局氛围、结构化信息、玩法入口和报名动作，符合移动端单手操作。</div>
+          <div class="small-note">适合 ${party.fit} · 主理人 ${party.organizer}</div>
         `;
+
         document.getElementById('detailShareBtn').onclick = openShareModal;
         document.getElementById('detailActionBtn').onclick = () => {
-          if(state.signupStatus === 'open'){
+          if(viewerStatus === 'open'){
             openModal('signupModal');
-          }else if(state.signupStatus === 'pending'){
-            showToast('当前状态：已报待确认');
-          }else if(state.signupStatus === 'confirmed'){
-            showToast('集合点：酒吧门口 20:20');
-          }else{
-            showToast('你在候补中，有空位会提醒');
+            return;
           }
+          if(viewerStatus === 'pending'){
+            showToast('你已报上，主理人正在确认');
+            return;
+          }
+          if(viewerStatus === 'confirmed'){
+            showToast('集合点：酒吧门口 20:20，记得先加主理人');
+            return;
+          }
+          showToast('你在候补中，有空位会第一时间提醒');
         };
+
         Array.from(els.detailView.querySelectorAll('[data-open-game]')).forEach(btn => {
           btn.onclick = () => openGameModal(btn.dataset.openGame);
         });
       }
 
+      function hostStatusLabel(status){
+        return {
+          pending: '待处理',
+          confirmed: '已确认',
+          waitlist: '候补',
+          rejected: '已拒绝'
+        }[status] || status;
+      }
+
+      function renderHostCurrentCard(){
+        const party = getSelectedParty();
+        const stats = getPartyStats(party);
+        const visibleParties = parties.slice().sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0)).slice(0, 6);
+        els.hostCurrentCard.innerHTML = `
+          <h3>当前正在管理：${party.name}</h3>
+          <p>${party.time} · ${party.venue}</p>
+          <div class="launch-summary">
+            <div class="metric"><div class="num">${stats.joined}/${party.capacity}</div><div class="cap">已占位</div></div>
+            <div class="metric"><div class="num">${stats.pending}</div><div class="cap">待确认</div></div>
+            <div class="metric"><div class="num">${party.attachedGames.length}</div><div class="cap">已挂玩法</div></div>
+          </div>
+          <div class="host-party-pills">
+            ${visibleParties.map(item => `
+              <button class="party-switch ${item.id === party.id ? 'active' : ''}" data-switch-party="${item.id}">
+                ${item.name}
+              </button>
+            `).join('')}
+          </div>
+        `;
+        Array.from(els.hostCurrentCard.querySelectorAll('[data-switch-party]')).forEach(btn => {
+          btn.onclick = () => {
+            state.selectedPartyId = btn.dataset.switchParty;
+            renderAll();
+          };
+        });
+      }
+
       function renderSignups(){
-        const list = state.signups.filter(item => item.status === state.hostFilter);
+        const currentParty = getSelectedParty();
+        const list = state.signups.filter(item => item.partyId === currentParty.id && item.status === state.hostFilter);
         els.signupList.innerHTML = list.map(item => `
           <div class="list-card">
             <div class="list-head">
@@ -1273,50 +1614,45 @@
             </div>
           </div>
         `).join('') || `
-          <div class="list-card">
-            <div class="list-title">这个状态下暂时没人</div>
-            <div class="list-meta">切换上面的筛选，或者等待新的报名进入。</div>
+          <div class="empty-stack">
+            ${currentParty.name} 在“${hostStatusLabel(state.hostFilter)}”里暂时没人。你可以先去发分享文案，或者换一个局继续看。
           </div>
         `;
+
         Array.from(els.signupList.querySelectorAll('[data-signup-action]')).forEach(btn => {
           btn.onclick = () => {
             const target = state.signups.find(item => item.id === btn.dataset.signupId);
             if(!target) return;
             target.status = btn.dataset.signupAction;
-            if(target.status === 'confirmed') state.signupStatus = 'confirmed';
-            if(target.status === 'waitlist') state.signupStatus = 'waitlist';
-            renderSignups();
-            renderDetail();
+            if(state.latestSignupIdByParty[target.partyId] === target.id){
+              state.viewerStatus[target.partyId] = target.status === 'rejected' ? 'open' : target.status;
+            }
+            renderAll();
             showToast(`已将 ${target.name} 设为${hostStatusLabel(target.status)}`);
           };
         });
       }
 
-      function hostStatusLabel(status){
-        return {
-          pending: '待处理',
-          confirmed: '已确认',
-          waitlist: '候补',
-          rejected: '已拒绝'
-        }[status] || status;
-      }
-
       function renderRefillTemplates(){
         const party = getSelectedParty();
+        const share = buildShare(party);
         const templates = [
-          `今晚 ${party.time.replace('今晚 ','')} ${party.name}，${party.quotaLabel}，${party.tags[0]}，想来喝一杯的现在可报。`,
-          `${party.name} 临时空出两个位置，地点在 ${party.venue}，适合 ${party.fit}。`,
-          `今晚想来点有局感的就来这场：${party.theme}，${party.venue}，主理人 ${party.organizer}。`
+          share.friend,
+          share.group,
+          `${party.time} 的 ${party.name}，${party.vibe} 现在 ${getPartyStats(party).quotaText}。`
         ];
-        els.refillTemplates.innerHTML = templates.map((t, idx) => `
+        els.refillTemplates.innerHTML = templates.map((text, index) => `
           <div class="list-card">
-            <div class="list-title">模板 ${String.fromCharCode(65 + idx)}</div>
-            <div class="list-meta">${t}</div>
-            <div class="mini-actions"><button data-copy-template="${idx}">复制文案</button><button data-open-share="1">去分享</button></div>
+            <div class="list-title">模板 ${String.fromCharCode(65 + index)}</div>
+            <div class="list-meta">${text}</div>
+            <div class="mini-actions">
+              <button data-copy-template="${index}">复制文案</button>
+              <button data-open-share="1">去分享</button>
+            </div>
           </div>
         `).join('');
         Array.from(els.refillTemplates.querySelectorAll('[data-copy-template]')).forEach(btn => {
-          btn.onclick = () => showToast('补位文案已复制');
+          btn.onclick = () => copyText(templates[Number(btn.dataset.copyTemplate)]);
         });
         Array.from(els.refillTemplates.querySelectorAll('[data-open-share]')).forEach(btn => {
           btn.onclick = openShareModal;
@@ -1324,22 +1660,26 @@
       }
 
       function renderGameList(container, list){
-        container.innerHTML = list.map(item => `
-          <div class="list-card">
-            <div class="list-head">
-              <div>
-                <div class="list-title">${item.title}</div>
-                <div class="small">${item.labels.join(' · ')}</div>
+        const selectedParty = getSelectedParty();
+        container.innerHTML = list.map(item => {
+          const attached = selectedParty.attachedGames.includes(item.id);
+          return `
+            <div class="list-card">
+              <div class="list-head">
+                <div>
+                  <div class="list-title">${item.title}</div>
+                  <div class="small">${item.labels.join(' · ')}</div>
+                </div>
+                <span class="tag">即开可玩</span>
               </div>
-              <span class="tag">${item.type === 'inner' ? '内置' : '外链'}</span>
+              <div class="list-meta">${item.desc}</div>
+              <div class="mini-actions">
+                <button data-open-game="${item.id}">${item.playType === 'dice' ? '掷骰子' : '开始'}</button>
+                <button data-attach-game="${item.id}">${attached ? '已加入本局' : '加入本局'}</button>
+              </div>
             </div>
-            <div class="list-meta">${item.desc}</div>
-            <div class="mini-actions">
-              <button data-open-game="${item.id}">${item.type === 'inner' ? '开始' : '查看说明'}</button>
-              <button data-attach-game="${item.id}">加入本局</button>
-            </div>
-          </div>
-        `).join('');
+          `;
+        }).join('');
       }
 
       function bindGameActions(){
@@ -1347,62 +1687,124 @@
           btn.onclick = () => openGameModal(btn.dataset.openGame);
         });
         Array.from(document.querySelectorAll('[data-attach-game]')).forEach(btn => {
-          btn.onclick = () => showToast('已加入本局玩法位');
+          btn.onclick = () => attachGameToCurrentParty(btn.dataset.attachGame);
         });
       }
 
-      function openModal(id){
-        document.getElementById(id).classList.add('open');
-      }
-      function closeModal(id){
-        document.getElementById(id).classList.remove('open');
+      function attachGameToCurrentParty(gameId){
+        const party = getSelectedParty();
+        const game = gameCatalog[gameId];
+        if(!game) return;
+        if(party.attachedGames.includes(gameId)){
+          showToast(`${game.title} 已经在这场局里了`);
+          return;
+        }
+        party.attachedGames.push(gameId);
+        party.share = buildShare(party);
+        renderAll();
+        showToast(`已把 ${game.title} 加入本局`);
       }
 
       function openShareModal(){
         const party = getSelectedParty();
-        els.shareList.innerHTML = `
-          <button class="share-option">
-            <strong>发给微信好友</strong>
-            ${party.share.friend}
+        party.share = buildShare(party);
+        state.shareItems = [
+          { title: '发给微信好友', text: party.share.friend },
+          { title: '分享到朋友圈', text: party.share.timeline },
+          { title: '群补位短文案', text: party.share.group }
+        ];
+        els.shareList.innerHTML = state.shareItems.map((item, index) => `
+          <button class="share-option" data-share-index="${index}">
+            <strong>${item.title}</strong>
+            ${item.text}
           </button>
-          <button class="share-option">
-            <strong>分享到朋友圈</strong>
-            ${party.share.timeline}
-          </button>
-          <button class="share-option">
-            <strong>群补位短文案</strong>
-            今晚 ${party.name}，${party.quotaLabel}，地点 ${party.venue}，想一起喝一杯的来。
-          </button>
-        `;
-        Array.from(els.shareList.querySelectorAll('.share-option')).forEach(btn => {
-          btn.onclick = () => showToast('已模拟配置微信分享文案');
+        `).join('');
+        Array.from(els.shareList.querySelectorAll('[data-share-index]')).forEach(btn => {
+          btn.onclick = () => copyText(state.shareItems[Number(btn.dataset.shareIndex)].text);
         });
         openModal('shareModal');
       }
 
-      function findGameById(id){
-        return [...gameData.daily, ...gameData.inner, ...gameData.outer].find(item => item.id === id);
+      function renderMetricCards(metrics){
+        return metrics.map(item => `
+          <div class="metric">
+            <div class="num">${item.num}</div>
+            <div class="cap">${item.cap}</div>
+          </div>
+        `).join('');
       }
 
-      function openGameModal(id){
-        const game = findGameById(id);
+      function pickPrompt(game){
+        const lastIndex = state.currentPlay && state.currentPlay.lastIndex;
+        let nextIndex = Math.floor(Math.random() * game.prompts.length);
+        if(game.prompts.length > 1 && nextIndex === lastIndex){
+          nextIndex = (nextIndex + 1) % game.prompts.length;
+        }
+        state.currentPlay = { gameId: game.id, lastIndex: nextIndex };
+        return game.prompts[nextIndex];
+      }
+
+      function renderPromptGame(game){
+        const prompt = pickPrompt(game);
+        els.gamePlayArea.innerHTML = `
+          <div class="play-card">
+            <div class="prompt-index">${game.promptTitle}</div>
+            <div class="play-title">${prompt.title}</div>
+            <div class="play-copy">${prompt.copy}</div>
+            <div class="play-tags">${prompt.tags.map(tag => `<span class="pill">${tag}</span>`).join('')}</div>
+          </div>
+        `;
+        els.gameActionBtn.textContent = '换一张';
+      }
+
+      function renderDiceGame(game){
+        const left = Math.floor(Math.random() * 6) + 1;
+        const right = Math.floor(Math.random() * 6) + 1;
+        const total = left + right;
+        const note = game.rules[total] || '这轮自由发挥，指定一个人先开口。';
+        els.gamePlayArea.innerHTML = `
+          <div class="play-card">
+            <div class="prompt-index">掷骰结果</div>
+            <div class="dice-row">
+              <div class="dice-face">${left}</div>
+              <div class="dice-face">${right}</div>
+            </div>
+            <div class="play-title">总点数 ${total}</div>
+            <div class="play-copy">${note}</div>
+          </div>
+        `;
+        els.gameActionBtn.textContent = '再掷一次';
+      }
+
+      function openGameModal(gameId){
+        const game = gameCatalog[gameId];
         if(!game) return;
+        state.activeGameId = gameId;
+        state.currentPlay = null;
         els.gameModalTitle.textContent = game.title;
-        els.gameModalDesc.textContent = game.type === 'outer'
-          ? `${game.desc} 这是外链玩法，实际接入时会先提示将打开外部页面，并在返回后恢复当前局详情。`
-          : `${game.desc} 这是内置轻玩法，会在当前 H5 内直接打开。`;
-        els.gameMetrics.innerHTML = game.metrics.map(text => `
-          <div class="metric"><div class="num">${text.split(' ')[1] || text}</div><div class="cap">${text.split(' ')[0] || '指标'}</div></div>
-        `).join('');
-        els.gameActionBtn.textContent = game.type === 'outer' ? '确认跳转' : '开始内置玩法';
+        els.gameModalDesc.textContent = game.desc;
+        els.gameMetrics.innerHTML = renderMetricCards(game.metrics);
+        els.gamePlayArea.innerHTML = `
+          <div class="play-card">
+            <div class="prompt-index">玩法说明</div>
+            <div class="play-title">${game.title}</div>
+            <div class="play-copy">${game.playType === 'dice' ? '点下按钮直接掷两颗骰子，按结果走桌上动作。' : '点下按钮就会随机给你一张题卡，适合当前这场局直接开始。'}</div>
+            <div class="play-tags">${game.labels.map(label => `<span class="pill">${label}</span>`).join('')}</div>
+          </div>
+        `;
+        els.gameActionBtn.textContent = game.playType === 'dice' ? '掷一次' : '开始';
         els.gameActionBtn.onclick = () => {
-          showToast(game.type === 'outer' ? '已模拟外链跳转并保留回流' : '已开始内置玩法');
-          closeModal('gameModal');
+          if(game.playType === 'dice'){
+            renderDiceGame(game);
+            return;
+          }
+          renderPromptGame(game);
         };
         openModal('gameModal');
       }
 
       function handleSignupSubmit(){
+        const party = getSelectedParty();
         const name = document.getElementById('signupName').value.trim();
         const contact = document.getElementById('signupContact').value.trim();
         const intro = document.getElementById('signupIntro').value.trim();
@@ -1412,8 +1814,10 @@
           els.signupResult.classList.add('show');
           return;
         }
-        const newSignup = {
-          id: 's' + (Date.now()),
+
+        const signup = {
+          id: 's' + Date.now(),
+          partyId: party.id,
           name,
           contact,
           intro: intro || '想先来感受一下这场局。',
@@ -1421,23 +1825,86 @@
           status: 'pending',
           eta: '可准时到'
         };
-        state.signups.unshift(newSignup);
-        state.signupStatus = 'pending';
-        els.signupResult.textContent = '报名成功。你现在处于“已报待确认”，主理人会尽快处理。';
+
+        state.signups.unshift(signup);
+        state.viewerStatus[party.id] = 'pending';
+        state.latestSignupIdByParty[party.id] = signup.id;
+        els.signupResult.textContent = '报名成功。你已经进入“待确认”，主理人会尽快处理。';
         els.signupResult.classList.add('show');
-        renderSignups();
-        renderDetail();
+        document.getElementById('signupName').value = '';
+        document.getElementById('signupContact').value = '';
+        document.getElementById('signupIntro').value = '';
+        document.getElementById('signupPreference').value = '';
+        renderAll();
         setTimeout(() => closeModal('signupModal'), 900);
+      }
+
+      function getDraft(){
+        return {
+          title: document.getElementById('hostTitle').value.trim(),
+          time: document.getElementById('hostTime').value.trim(),
+          quota: document.getElementById('hostQuota').value.trim(),
+          venue: document.getElementById('hostVenue').value.trim(),
+          vibe: document.getElementById('hostVibe').value.trim()
+        };
+      }
+
+      function fillDraft(draft){
+        if(!draft) return;
+        document.getElementById('hostTitle').value = draft.title || '';
+        document.getElementById('hostTime').value = draft.time || '';
+        document.getElementById('hostQuota').value = draft.quota || '';
+        document.getElementById('hostVenue').value = draft.venue || '';
+        document.getElementById('hostVibe').value = draft.vibe || '';
+      }
+
+      function publishParty(){
+        const draft = getDraft();
+        if(!draft.title || !draft.time || !draft.venue){
+          showToast('先补齐标题、时间和地点');
+          return;
+        }
+        const capacity = Math.max(4, Number(draft.quota) || 8);
+        const party = ensurePartyData({
+          id: 'p' + Date.now(),
+          feed: inferFeed(draft.time),
+          name: draft.title,
+          desc: draft.vibe || '新发的一场局，适合先把人约起来，再边玩边调整氛围。',
+          time: draft.time,
+          venue: draft.venue,
+          budget: '到场 AA / 现场定',
+          tags: ['刚发布', '主理人在线', '可直接报名'],
+          vibe: draft.vibe || '先把人约起来，再决定今晚往哪种氛围走。',
+          fit: '今晚想出来喝一杯的人',
+          theme: '新开一局',
+          organizer: '你',
+          coverClass: parties.length % 2 ? 'alt-1' : 'alt-2',
+          capacity,
+          baseJoined: 0,
+          attachedGames: ['icebreaker', 'dice'],
+          createdAt: Date.now()
+        });
+        parties.unshift(party);
+        state.selectedPartyId = party.id;
+        state.currentFeed = party.feed;
+        state.currentFilter = '';
+        fillDraft({});
+        try{ localStorage.removeItem(DRAFT_KEY); }catch(error){}
+        renderAll();
+        switchView('detail');
+        openShareModal();
+        showToast('新局已创建，现在可以直接转发补位');
       }
 
       function renderAll(){
         renderPartyList();
         renderDetail();
+        renderHostCurrentCard();
         renderSignups();
         renderRefillTemplates();
-        renderGameList(els.dailyGames, gameData.daily);
-        renderGameList(els.innerGames, gameData.inner);
-        renderGameList(els.outerGames, gameData.outer);
+        renderGameList(els.dailyGames, getDailyGames());
+        renderGameList(els.innerGames, [gameCatalog.icebreaker, gameCatalog.truth]);
+        renderGameList(els.outerGames, [gameCatalog.dice]);
         bindGameActions();
       }
 
@@ -1473,28 +1940,26 @@
 
       document.getElementById('submitSignupBtn').addEventListener('click', handleSignupSubmit);
       document.getElementById('shareTopBtn').addEventListener('click', openShareModal);
-      document.getElementById('notifyBtn').addEventListener('click', () => showToast('已模拟提醒配置'));
+      document.getElementById('notifyBtn').addEventListener('click', () => showToast('已为这场局打开开场前提醒'));
       document.getElementById('saveDraftBtn').addEventListener('click', () => {
+        const draft = getDraft();
+        try{ localStorage.setItem(DRAFT_KEY, JSON.stringify(draft)); }catch(error){}
         state.draftSaved = true;
         showToast('草稿已保存');
       });
-      document.getElementById('publishBtn').addEventListener('click', () => {
-        const title = document.getElementById('hostTitle').value.trim();
-        const time = document.getElementById('hostTime').value.trim();
-        const venue = document.getElementById('hostVenue').value.trim();
-        if(!title || !time || !venue){
-          showToast('先补齐标题、时间和地点');
-          return;
+      document.getElementById('publishBtn').addEventListener('click', publishParty);
+      els.heroCreateBtn.addEventListener('click', () => switchView('host'));
+
+      window.addEventListener('click', (event) => {
+        if(event.target.classList.contains('modal-layer')){
+          event.target.classList.remove('open');
         }
-        showToast('已发布，并准备微信分享信息');
-        openShareModal();
       });
 
-      window.addEventListener('click', (e) => {
-        if(e.target.classList.contains('modal-layer')){
-          e.target.classList.remove('open');
-        }
-      });
+      try{
+        const draft = JSON.parse(localStorage.getItem(DRAFT_KEY) || 'null');
+        if(draft) fillDraft(draft);
+      }catch(error){}
 
       renderAll();
     })();
