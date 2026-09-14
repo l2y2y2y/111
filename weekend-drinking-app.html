@@ -744,6 +744,70 @@
       display:grid;
       gap:12px;
     }
+    .featured-game-card{
+      padding:16px;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.12);
+      background:
+        radial-gradient(circle at top right, rgba(255,107,143,.16), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+    }
+    .featured-game-card .meta{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:center;
+      margin-bottom:10px;
+    }
+    .scene-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin-top:14px;
+    }
+    .scene-card{
+      border-radius:20px;
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      padding:16px;
+      cursor:pointer;
+      transition:transform .18s ease, border-color .18s ease;
+    }
+    .scene-card:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.18)}
+    .scene-card h4{
+      margin:8px 0 6px;
+      font-size:18px;
+    }
+    .scene-card p{
+      margin:0;
+      font-size:13px;
+      color:var(--ink-soft);
+      line-height:1.65;
+    }
+    .scene-card .eyebrow-mini{
+      color:var(--accent-3);
+      font-size:12px;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      font-weight:700;
+    }
+    .scene-card .small-note{margin-top:8px}
+    .game-section-block{
+      padding:16px;
+      border-radius:22px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+    }
+    .game-section-block h3{
+      margin:0;
+      font-size:18px;
+    }
+    .game-section-block p{
+      margin:8px 0 0;
+      color:var(--ink-soft);
+      font-size:13px;
+      line-height:1.7;
+    }
     .play-card{
       border-radius:20px;
       border:1px solid var(--line);
@@ -789,6 +853,200 @@
       place-items:center;
       font-size:46px;
       font-weight:800;
+    }
+    .flip-shell{
+      perspective:1200px;
+    }
+    .flip-card{
+      position:relative;
+      min-height:220px;
+      transform-style:preserve-3d;
+      transition:transform .5s ease;
+    }
+    .flip-card.flipped{
+      transform:rotateY(180deg);
+    }
+    .flip-face{
+      position:absolute;
+      inset:0;
+      backface-visibility:hidden;
+      border-radius:24px;
+      padding:18px;
+      border:1px solid rgba(255,255,255,.12);
+      background:
+        radial-gradient(circle at top right, rgba(255,107,143,.18), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+    .flip-face.back{
+      background:
+        radial-gradient(circle at top left, rgba(159,115,255,.28), transparent 32%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      text-align:center;
+      justify-content:center;
+      gap:12px;
+    }
+    .flip-face.front{
+      transform:rotateY(180deg);
+    }
+    .choice-grid,.vote-grid{
+      display:grid;
+      gap:10px;
+      margin-top:14px;
+    }
+    .option-btn{
+      border:1px solid var(--line-strong);
+      background:rgba(255,255,255,.05);
+      color:var(--ink);
+      padding:14px;
+      border-radius:18px;
+      text-align:left;
+      cursor:pointer;
+      transition:border-color .18s ease, transform .18s ease, background .18s ease;
+    }
+    .option-btn:hover{transform:translateY(-1px);border-color:rgba(255,255,255,.2)}
+    .option-btn.active{
+      border-color:rgba(255,107,143,.42);
+      background:linear-gradient(135deg, rgba(255,107,143,.18), rgba(159,115,255,.14));
+    }
+    .result-strip{
+      margin-top:12px;
+      padding:12px 14px;
+      border-radius:16px;
+      background:rgba(255,255,255,.05);
+      color:var(--ink-soft);
+      font-size:13px;
+      line-height:1.7;
+      border:1px solid var(--line);
+    }
+    .wheel-stage{
+      display:grid;
+      gap:14px;
+    }
+    .wheel-shell{
+      width:240px;
+      height:240px;
+      margin:0 auto;
+      position:relative;
+    }
+    .wheel-disc{
+      width:100%;
+      height:100%;
+      border-radius:50%;
+      border:6px solid rgba(255,255,255,.14);
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.08), 0 18px 40px rgba(0,0,0,.24);
+      transition:transform 1s cubic-bezier(.14,.88,.22,1);
+    }
+    .wheel-pointer{
+      position:absolute;
+      top:-10px;
+      left:50%;
+      transform:translateX(-50%);
+      width:0;
+      height:0;
+      border-left:12px solid transparent;
+      border-right:12px solid transparent;
+      border-top:0;
+      border-bottom:22px solid var(--accent-3);
+      filter:drop-shadow(0 4px 10px rgba(0,0,0,.4));
+    }
+    .wheel-legend{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:8px;
+      margin-top:12px;
+    }
+    .wheel-chip{
+      padding:10px 12px;
+      border-radius:14px;
+      font-size:12px;
+      background:rgba(255,255,255,.05);
+      border:1px solid var(--line);
+      color:var(--ink-soft);
+    }
+    .vote-bars{
+      display:grid;
+      gap:8px;
+      margin-top:12px;
+    }
+    .vote-bar{
+      position:relative;
+      border-radius:14px;
+      overflow:hidden;
+      background:rgba(255,255,255,.05);
+      border:1px solid var(--line);
+      min-height:44px;
+    }
+    .vote-bar-fill{
+      position:absolute;
+      inset:0 auto 0 0;
+      background:linear-gradient(135deg, rgba(255,107,143,.34), rgba(159,115,255,.24));
+    }
+    .vote-bar-label{
+      position:relative;
+      z-index:1;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:12px 14px;
+      font-size:13px;
+    }
+    .countdown-ring{
+      width:120px;
+      height:120px;
+      border-radius:50%;
+      margin:0 auto 12px;
+      display:grid;
+      place-items:center;
+      border:1px solid rgba(255,255,255,.12);
+      background:
+        radial-gradient(circle, rgba(18,13,25,1) 42%, transparent 44%),
+        conic-gradient(var(--accent) var(--countdown, 0%), rgba(255,255,255,.06) 0);
+    }
+    .countdown-ring strong{
+      font-size:34px;
+    }
+    .streak-grid{
+      display:grid;
+      gap:10px;
+      margin-top:12px;
+    }
+    .streak-row{
+      display:flex;
+      gap:8px;
+    }
+    .streak-dot{
+      flex:1;
+      height:8px;
+      border-radius:999px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.04);
+    }
+    .streak-dot.active{
+      background:linear-gradient(135deg, rgba(255,107,143,.72), rgba(159,115,255,.72));
+      border-color:transparent;
+    }
+    .play-actions-inline{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:12px;
+    }
+    .mini-pill-btn{
+      border:1px solid var(--line-strong);
+      background:rgba(255,255,255,.05);
+      color:var(--ink-soft);
+      padding:8px 12px;
+      border-radius:999px;
+      cursor:pointer;
+      font-size:12px;
+    }
+    .mini-pill-btn.active{
+      color:#fff;
+      border-color:rgba(255,107,143,.4);
+      background:linear-gradient(135deg, rgba(255,107,143,.16), rgba(159,115,255,.16));
     }
     .small-note{
       margin-top:12px;
@@ -859,9 +1117,10 @@
       color:var(--muted);
     }
     @media (max-width:390px){
-      .form-row,.info-grid,.metric-row,.launch-summary,.dice-row{grid-template-columns:1fr}
+      .form-row,.info-grid,.metric-row,.launch-summary,.dice-row,.scene-grid,.wheel-legend{grid-template-columns:1fr}
       .hero-card .title,.hero-card .sub,.detail-hero p{max-width:none}
       h1{font-size:28px}
+      .wheel-shell{width:210px;height:210px}
     }
   </style>
 </head>
@@ -988,26 +1247,28 @@
               <div class="hero">
                 <div class="eyebrow">Party games</div>
                 <h1>游戏与气氛工具</h1>
-                <p class="muted-copy">这一版先只放真的能玩的 3 个，点开就能直接开始，不再做打不开的占位入口。</p>
+                <p class="muted-copy">先选你现在处在酒局的哪个时刻，再直接开玩。这里不再是玩法说明页，而是今晚真正能用的互动工具箱。</p>
               </div>
 
               <div class="games-board">
-                <h3>今日玩法榜</h3>
-                <p>按自然日自动换顺序，优先把适合今晚这场的玩法顶上来。</p>
-                <div class="stack" id="dailyGames"></div>
+                <h3>今晚这场先玩什么</h3>
+                <p>根据当前这场局的人数、气氛和默认挂载玩法，先给你 3 个最顺手的推荐。</p>
+                <div class="stack" id="featuredGames"></div>
               </div>
 
               <div class="games-board">
-                <h3>开场破冰</h3>
-                <p>适合陌生人坐下第一轮，低门槛，不用主持人讲太多规则。</p>
-                <div class="stack" id="innerGames"></div>
+                <h3>按酒局时刻来选</h3>
+                <p>先别研究规则，先判断现在是刚落座、热起来、聊深了，还是准备玩疯。</p>
+                <div class="scene-grid" id="sceneGrid"></div>
               </div>
 
               <div class="games-board">
-                <h3>桌上快玩</h3>
-                <p>局中气氛已经起来以后，直接点开就能继续玩，不需要跳出当前页。</p>
-                <div class="stack" id="outerGames"></div>
+                <h3>本局已挂玩法</h3>
+                <p>这场局已经配好的默认玩法，打开就能继续推进节奏。</p>
+                <div class="stack" id="partyGames"></div>
               </div>
+
+              <div class="stack" id="categorySections"></div>
             </section>
           </main>
 
@@ -1116,7 +1377,8 @@
         latestSignupIdByParty: {},
         activeGameId: null,
         currentPlay: null,
-        shareItems: []
+        shareItems: [],
+        activeTimer: null
       };
 
       const parties = [
@@ -1136,7 +1398,7 @@
           coverClass: '',
           capacity: 8,
           baseJoined: 5,
-          attachedGames: ['icebreaker', 'truth'],
+          attachedGames: ['firstshot', 'icebreaker', 'truth'],
           createdAt: Date.now() - 1000 * 60 * 60 * 4
         },
         {
@@ -1155,7 +1417,7 @@
           coverClass: 'alt-1',
           capacity: 6,
           baseJoined: 3,
-          attachedGames: ['dice'],
+          attachedGames: ['wheel', 'dice'],
           createdAt: Date.now() - 1000 * 60 * 60 * 2
         },
         {
@@ -1174,7 +1436,7 @@
           coverClass: 'alt-2',
           capacity: 8,
           baseJoined: 5,
-          attachedGames: ['truth', 'dice'],
+          attachedGames: ['truth', 'syncvote'],
           createdAt: Date.now() - 1000 * 60 * 60
         },
         {
@@ -1193,59 +1455,85 @@
           coverClass: '',
           capacity: 8,
           baseJoined: 3,
-          attachedGames: ['icebreaker'],
+          attachedGames: ['icebreaker', 'challenge'],
           createdAt: Date.now() - 1000 * 60 * 30
         }
       ];
 
       const gameCatalog = {
-        icebreaker: {
-          id: 'icebreaker',
-          title: '破冰问答卡',
-          desc: '陌生人刚坐下时最有用的一套快问快答。规则很轻，适合开场 3 分钟把桌子热起来。',
-          labels: ['3 分钟上手', '新手友好'],
+        firstshot: {
+          id: 'firstshot',
+          title: '今晚第一问',
+          desc: '刚落座先来一个二选一，5 秒就能让整桌人开口。',
+          labels: ['破冰层', '二选一'],
+          scene: 'starter',
           metrics: [
-            { num: '36', cap: '问题卡' },
-            { num: '4-10', cap: '适合人数' },
-            { num: '3 min', cap: '开场时长' }
+            { num: '18', cap: '快问题' },
+            { num: '2', cap: '选项' },
+            { num: '1 min', cap: '起手时间' }
           ],
-          playType: 'cards',
-          promptTitle: '今晚先聊这个',
+          playType: 'choice',
+          promptTitle: '刚坐下先问这个',
           prompts: [
-            { title: '如果今晚只能带一种酒回家，你会选什么？', copy: '先从偏好聊起，比“你做什么工作”更容易打开场。', tags: ['轻松', '开场'] },
-            { title: '你最近一次觉得“今晚值了”是什么时刻？', copy: '适合把聊天从表面话题拉到更有记忆点的经历。', tags: ['故事感', '开场'] },
-            { title: '如果这桌要临时去续摊，你最想去哪种地方？', copy: '顺手把桌上的节奏和大家的偏好摸清楚。', tags: ['续摊', '投票'] },
-            { title: '今天你是来认真喝，还是来认真认识人？', copy: '一问就能知道今晚这场要往氛围局还是聊天局走。', tags: ['氛围', '选择题'] }
+            { title: '今晚更想认真喝，还是认真认识人？', options: ['认真喝', '认真认识人'], result: '选的人更多的一边先解释，另一边负责追问一句。' },
+            { title: '这局更适合先微醺，还是先热场？', options: ['先微醺', '先热场'], result: '票数多的一边决定今晚第一轮节奏。' },
+            { title: '如果要临时续摊，你更想去安静点还是闹一点？', options: ['安静一点', '闹一点'], result: '结果会决定今晚后半程要不要切挑战类玩法。' },
+            { title: '桌上更需要一个会讲故事的人，还是一个会接话的人？', options: ['会讲故事', '会接话'], result: '选中的类型要先起一个话题。' }
           ]
         },
-        truth: {
-          id: 'truth',
-          title: '真心话抽卡',
-          desc: '比普通真心话更轻一点，不尬、不冒犯，适合已经开始聊开后的第二轮互动。',
-          labels: ['内置即玩', '适合第二轮'],
+        icebreaker: {
+          id: 'icebreaker',
+          title: '抽一张认识卡',
+          desc: '翻卡形式的轻问题，比硬自我介绍更自然，适合第一轮碰杯后使用。',
+          labels: ['破冰层', '翻牌'],
+          scene: 'starter',
           metrics: [
-            { num: '48', cap: '题目数' },
-            { num: '4-8', cap: '适合人数' },
-            { num: '6 min', cap: '平均时长' }
+            { num: '24', cap: '翻牌题' },
+            { num: '4-10', cap: '适合人数' },
+            { num: '3 min', cap: '热场时间' }
           ],
-          playType: 'cards',
-          promptTitle: '真心话来了',
+          playType: 'flip',
+          promptTitle: '翻开这一张',
           prompts: [
-            { title: '你最想撤回的一次酒后发言是什么？', copy: '轻一点的真心话，通常能把桌上的笑点拉起来。', tags: ['轻社死', '好笑'] },
-            { title: '如果给最近的自己取一个酒单名，会叫什么？', copy: '适合从情绪切入，不会过于私密。', tags: ['情绪', '创意'] },
-            { title: '你第一次觉得“这个人还挺有意思”的瞬间通常是什么？', copy: '很适合让桌上开始出现认真一点的交流。', tags: ['关系', '观察'] },
-            { title: '你最近最想庆祝、但还没庆祝的一件事是什么？', copy: '容易让大家自然接住话题，也能形成后续祝酒点。', tags: ['庆祝', '延展'] }
+            { title: '如果今晚只能推荐桌上一种酒给陌生人，你会推哪杯？', copy: '先聊偏好，通常比聊职业更容易打开。', tags: ['轻松', '开场'] },
+            { title: '你最近一次觉得“这顿局很值”是什么时刻？', copy: '适合从经历切进去，让桌上快速出现具体故事。', tags: ['故事', '记忆点'] },
+            { title: '这桌如果临时换个场景，你最想去哪？', copy: '顺手把大家对今晚节奏的想象都聊出来。', tags: ['续摊', '路线'] },
+            { title: '如果今晚只能带走一个新朋友的技能，你最想拿什么？', copy: '容易引出夸人、观察和好笑的评价。', tags: ['关系', '好笑'] }
+          ]
+        },
+        wheel: {
+          id: 'wheel',
+          title: '喝酒轮盘',
+          desc: '真正会转的轮盘，适合第一轮喝完以后迅速把节奏拉起来。',
+          labels: ['热场层', '轮盘'],
+          scene: 'warmup',
+          metrics: [
+            { num: '8', cap: '轮盘结果' },
+            { num: '5 sec', cap: '每轮反馈' },
+            { num: '∞', cap: '循环次数' }
+          ],
+          playType: 'wheel',
+          segments: [
+            { label: '指定发问', result: '指定一个人问你一个轻问题，再轮到他转。', color: '#ff6b8f' },
+            { label: '全桌碰杯', result: '这一格不罚酒，全桌碰一下，马上进入下一轮。', color: '#9f73ff' },
+            { label: '讲个糗事', result: '说一个最近的小尴尬，越短越好。', color: '#ffbb70' },
+            { label: '换位聊天', result: '和你左手边的人互问一个问题。', color: '#68d5ac' },
+            { label: '夸一个人', result: '现场指定一个人，夸他一个今天的优点。', color: '#ff8b9e' },
+            { label: '真心话', result: '现场任意人给你出一道真心话。', color: '#7f8cff' },
+            { label: '安全格', result: '这轮免罚，你可以指定下一个转盘的人。', color: '#ffc96f' },
+            { label: '小挑战', result: '从挑战卡里抽一张立即执行。', color: '#79e2d0' }
           ]
         },
         dice: {
           id: 'dice',
-          title: '电子骰子',
-          desc: '两颗骰子直接掷，适合局中段转场。比外链更稳，点开就能玩。',
-          labels: ['桌上快玩', '节奏快'],
+          title: '桌面双骰',
+          desc: '两颗骰子直接掷，适合局中段转场。反馈直白，桌上节奏不会掉。',
+          labels: ['热场层', '掷骰'],
+          scene: 'warmup',
           metrics: [
             { num: '2', cap: '骰子' },
-            { num: '11', cap: '判定结果' },
-            { num: '无限', cap: '可循环' }
+            { num: '11', cap: '结果' },
+            { num: '∞', cap: '重复可玩' }
           ],
           playType: 'dice',
           rules: {
@@ -1261,8 +1549,102 @@
             11: '差一点满分，请桌上最安静的人先开口。',
             12: '双 6，全桌一起给今晚起一个局名。'
           }
+        },
+        truth: {
+          id: 'truth',
+          title: '真心话夜场版',
+          desc: '不是一股脑上重问题，而是按轻、中、深三档切换，让局感自己往里走。',
+          labels: ['关系层', '分层题库'],
+          scene: 'relation',
+          metrics: [
+            { num: '3', cap: '深度档位' },
+            { num: '36', cap: '可抽题数' },
+            { num: '6 min', cap: '建议时长' }
+          ],
+          playType: 'truth',
+          levels: {
+            soft: [
+              { title: '你最想撤回的一次酒后发言是什么？', copy: '轻一点的社死问题，最适合先把笑点拉起来。', tags: ['轻', '好笑'] },
+              { title: '如果给最近的自己取一个酒单名，会叫什么？', copy: '从情绪切入，但不会过分私密。', tags: ['轻', '创意'] },
+              { title: '今晚桌上谁最像会临时起意去续摊的人？', copy: '适合边观察边调侃，气氛很容易热起来。', tags: ['轻', '观察'] }
+            ],
+            mid: [
+              { title: '你第一次觉得“这个人挺有意思”的瞬间通常是什么？', copy: '会把桌上的聊天从表层带到关系判断。', tags: ['中', '关系'] },
+              { title: '最近哪一次社交让你觉得自己状态很好？', copy: '容易接住彼此的高光时刻。', tags: ['中', '状态'] },
+              { title: '你最难拒绝哪种人？', copy: '适合已经熟一点后再问。', tags: ['中', '性格'] }
+            ],
+            deep: [
+              { title: '你现在最希望被别人看见的一个部分是什么？', copy: '已经聊开之后再用，能很快拉出记忆点。', tags: ['深', '自我'] },
+              { title: '你最近最想庆祝、但一直没好好庆祝的一件事是什么？', copy: '往往能自然引到碰杯和认真回应。', tags: ['深', '庆祝'] },
+              { title: '如果你现在想重新认识一个人，你最想改变自己的哪种表达方式？', copy: '适合局后半程，容易聊出真实感。', tags: ['深', '关系'] }
+            ]
+          }
+        },
+        syncvote: {
+          id: 'syncvote',
+          title: '默契投票',
+          desc: '所有人先想答案，再同时揭示。比单人回答更适合朋友局和半熟局。',
+          labels: ['关系层', '多人投票'],
+          scene: 'relation',
+          metrics: [
+            { num: '4', cap: '选项数' },
+            { num: '多人', cap: '最优玩法' },
+            { num: '3 min', cap: '每轮时长' }
+          ],
+          playType: 'vote',
+          polls: [
+            { title: '今晚最可能第一个提续摊的人是谁？', options: ['主理人', '最会聊天的人', '最安静的人', '左手边的人'] },
+            { title: '这桌现在最该切哪种节奏？', options: ['继续聊天', '开始挑战', '认真喝一轮', '发朋友圈'] },
+            { title: '如果这局有一个隐藏 MVP，会是谁？', options: ['带气氛的人', '接话最准的人', '最会观察的人', '最会劝酒的人'] }
+          ]
+        },
+        challenge: {
+          id: 'challenge',
+          title: '今晚挑战卡',
+          desc: '10 秒内完成一个桌面挑战，用倒计时和强任务感制造高光时刻。',
+          labels: ['疯玩层', '挑战'],
+          scene: 'party',
+          metrics: [
+            { num: '10 s', cap: '倒计时' },
+            { num: '20', cap: '挑战卡' },
+            { num: '高光', cap: '传播感' }
+          ],
+          playType: 'challenge',
+          challenges: [
+            { title: '10 秒夸人挑战', copy: '在 10 秒内连续说出桌上一个人的 3 个优点，不能停顿。', tags: ['高光', '夸人'] },
+            { title: '连环指定', copy: '指 2 个人互相给对方一句“今天的第一印象”。', tags: ['互动', '桌面感'] },
+            { title: '续摊预演', copy: '假装已经到续摊现场，用一句话把所有人喊过去。', tags: ['表演', '好笑'] },
+            { title: '碰杯口号', copy: '当场给今晚这桌起一个碰杯口号，大家一起喊。', tags: ['疯玩', '口号'] }
+          ]
+        },
+        streak: {
+          id: 'streak',
+          title: '连击惩罚',
+          desc: '按轮次递增强度，越往后越疯，适合局后半段快速制造高潮。',
+          labels: ['疯玩层', '连击'],
+          scene: 'party',
+          metrics: [
+            { num: '5', cap: '连击轮次' },
+            { num: '升级', cap: '强度机制' },
+            { num: '后半场', cap: '推荐时机' }
+          ],
+          playType: 'streak',
+          rounds: [
+            '第 1 击：指定一个人讲最近一次临时起意做的事。',
+            '第 2 击：左手边和右手边互相问一个问题。',
+            '第 3 击：全桌选一个人，给他一个今晚外号。',
+            '第 4 击：掷到的人必须从真心话或挑战卡里二选一。',
+            '第 5 击：全桌一起决定今晚谁最该发这场局的返图。'
+          ]
         }
       };
+
+      const gameLayers = [
+        { id: 'starter', title: '刚落座有点尬', desc: '先让大家开口，不要一上来就讲规则。', note: '破冰层 · 适合前 5 分钟', games: ['firstshot', 'icebreaker'] },
+        { id: 'warmup', title: '第一轮喝完了', desc: '要把节奏往上推，但不能让人出戏。', note: '热场层 · 节奏型', games: ['wheel', 'dice'] },
+        { id: 'relation', title: '人慢慢熟了', desc: '适合把聊天拉深一点，开始形成记忆点。', note: '关系层 · 多人联动', games: ['truth', 'syncvote'] },
+        { id: 'party', title: '后半场准备玩疯', desc: '适合制造高光、口号和桌面传播点。', note: '疯玩层 · 高光玩法', games: ['challenge', 'streak'] }
+      ];
 
       state.signups = [
         { id: 's1', partyId: 'p1', name: '阿宁', contact: 'aning_wechat', intro: '精酿爱好者，想认识点新朋友。', preference: '精酿', status: 'pending', eta: '20:20 可到' },
@@ -1279,9 +1661,10 @@
         hostStatusTabs: Array.from(document.querySelectorAll('#hostStatusTabs button')),
         signupList: document.getElementById('signupList'),
         refillTemplates: document.getElementById('refillTemplates'),
-        dailyGames: document.getElementById('dailyGames'),
-        innerGames: document.getElementById('innerGames'),
-        outerGames: document.getElementById('outerGames'),
+        featuredGames: document.getElementById('featuredGames'),
+        sceneGrid: document.getElementById('sceneGrid'),
+        partyGames: document.getElementById('partyGames'),
+        categorySections: document.getElementById('categorySections'),
         hostCurrentCard: document.getElementById('hostCurrentCard'),
         toast: document.getElementById('toast'),
         shareList: document.getElementById('shareList'),
@@ -1509,7 +1892,7 @@
       }
 
       function getDailyGames(){
-        const rotation = ['icebreaker', 'truth', 'dice'];
+        const rotation = ['firstshot', 'icebreaker', 'wheel', 'dice', 'truth', 'syncvote', 'challenge', 'streak'];
         const offset = new Date().getDate() % rotation.length;
         return rotation.map((_, index) => gameCatalog[rotation[(offset + index) % rotation.length]]);
       }
@@ -1822,10 +2205,27 @@
         });
       }
 
-      function renderGameList(container, list){
+      function renderGameList(container, list, options = {}){
         const selectedParty = getSelectedParty();
+        const type = options.type || 'default';
         container.innerHTML = list.map(item => {
           const attached = selectedParty.attachedGames.includes(item.id);
+          if(type === 'featured'){
+            return `
+              <div class="featured-game-card">
+                <div class="meta">
+                  <span class="tag">${item.labels.join(' · ')}</span>
+                  <span class="quota">${attached ? '本局已挂载' : '今晚推荐'}</span>
+                </div>
+                <div class="list-title">${item.title}</div>
+                <div class="list-meta">${item.desc}</div>
+                <div class="mini-actions">
+                  <button data-open-game="${item.id}">${item.playType === 'dice' ? '掷一次' : item.playType === 'wheel' ? '转起来' : '马上开始'}</button>
+                  <button data-attach-game="${item.id}">${attached ? '已加入本局' : '加入本局'}</button>
+                </div>
+              </div>
+            `;
+          }
           return `
             <div class="list-card">
               <div class="list-head">
@@ -1851,6 +2251,14 @@
         });
         Array.from(document.querySelectorAll('[data-attach-game]')).forEach(btn => {
           btn.onclick = () => attachGameToCurrentParty(btn.dataset.attachGame);
+        });
+        Array.from(document.querySelectorAll('[data-open-layer]')).forEach(btn => {
+          btn.onclick = () => {
+            const layer = gameLayers.find(item => item.id === btn.dataset.openLayer);
+            if(!layer) return;
+            const firstGame = layer.games.map(id => gameCatalog[id]).find(Boolean);
+            if(firstGame) openGameModal(firstGame.id);
+          };
         });
       }
 
@@ -1910,18 +2318,269 @@
         `).join('');
       }
 
-      function pickPrompt(game){
+      function pickFromList(list){
         const lastIndex = state.currentPlay && state.currentPlay.lastIndex;
-        let nextIndex = Math.floor(Math.random() * game.prompts.length);
-        if(game.prompts.length > 1 && nextIndex === lastIndex){
-          nextIndex = (nextIndex + 1) % game.prompts.length;
+        let nextIndex = Math.floor(Math.random() * list.length);
+        if(list.length > 1 && nextIndex === lastIndex){
+          nextIndex = (nextIndex + 1) % list.length;
         }
-        state.currentPlay = { gameId: game.id, lastIndex: nextIndex };
-        return game.prompts[nextIndex];
+        state.currentPlay = { ...(state.currentPlay || {}), lastIndex: nextIndex };
+        return list[nextIndex];
+      }
+
+      function getRecommendedGames(){
+        const selectedParty = getSelectedParty();
+        const attached = selectedParty.attachedGames.map(id => gameCatalog[id]).filter(Boolean);
+        const daily = getDailyGames();
+        return [...attached, ...daily].filter((item, index, arr) => item && arr.findIndex(other => other.id === item.id) === index).slice(0, 3);
+      }
+
+      function renderGameHome(){
+        renderGameList(els.featuredGames, getRecommendedGames(), { type: 'featured' });
+        els.sceneGrid.innerHTML = gameLayers.map(layer => `
+          <button class="scene-card" data-open-layer="${layer.id}">
+            <div class="eyebrow-mini">${layer.note}</div>
+            <h4>${layer.title}</h4>
+            <p>${layer.desc}</p>
+            <div class="small-note">${layer.games.map(id => gameCatalog[id]?.title).filter(Boolean).join(' · ')}</div>
+          </button>
+        `).join('');
+        const partyGames = getSelectedParty().attachedGames.map(id => gameCatalog[id]).filter(Boolean);
+        renderGameList(els.partyGames, partyGames.length ? partyGames : getRecommendedGames());
+        els.categorySections.innerHTML = gameLayers.map(layer => `
+          <div class="game-section-block">
+            <h3>${layer.title}</h3>
+            <p>${layer.desc}</p>
+            <div class="stack" id="layer-${layer.id}"></div>
+          </div>
+        `).join('');
+        gameLayers.forEach(layer => {
+          const container = document.getElementById(`layer-${layer.id}`);
+          if(container){
+            renderGameList(container, layer.games.map(id => gameCatalog[id]).filter(Boolean));
+          }
+        });
+      }
+
+      function clearGameTimers(){
+        if(state.activeTimer){
+          clearInterval(state.activeTimer);
+          state.activeTimer = null;
+        }
+      }
+
+      function renderFlipGame(game){
+        const prompt = pickFromList(game.prompts);
+        state.currentPlay = { gameId: game.id, mode: 'flip', flipped: false, card: prompt, lastIndex: state.currentPlay?.lastIndex };
+        els.gamePlayArea.innerHTML = `
+          <div class="flip-shell">
+            <div class="flip-card" id="flipCard">
+              <div class="flip-face back">
+                <div class="prompt-index">${game.promptTitle}</div>
+                <div class="play-title">翻开这一张</div>
+                <div class="play-copy">先别解释规则，点一下翻卡就行。</div>
+              </div>
+              <div class="flip-face front">
+                <div class="prompt-index">${game.promptTitle}</div>
+                <div class="play-title">${prompt.title}</div>
+                <div class="play-copy">${prompt.copy}</div>
+                <div class="play-tags">${prompt.tags.map(tag => `<span class="pill">${tag}</span>`).join('')}</div>
+              </div>
+            </div>
+          </div>
+          <div class="play-actions-inline">
+            <button class="mini-pill-btn active" id="flipBtn">翻开</button>
+            <button class="mini-pill-btn" id="refreshFlipBtn">换一张</button>
+          </div>
+        `;
+        els.gameActionBtn.textContent = '翻开';
+        document.getElementById('flipBtn').onclick = () => {
+          document.getElementById('flipCard')?.classList.add('flipped');
+          els.gameActionBtn.textContent = '换一张';
+        };
+        document.getElementById('refreshFlipBtn').onclick = () => renderFlipGame(game);
+      }
+
+      function renderChoiceGame(game){
+        const prompt = pickFromList(game.prompts);
+        state.currentPlay = { gameId: game.id, mode: 'choice', prompt, lastIndex: state.currentPlay?.lastIndex };
+        els.gamePlayArea.innerHTML = `
+          <div class="play-card">
+            <div class="prompt-index">${game.promptTitle}</div>
+            <div class="play-title">${prompt.title}</div>
+            <div class="choice-grid">
+              ${prompt.options.map((option, index) => `<button class="option-btn" data-choice-index="${index}">${option}</button>`).join('')}
+            </div>
+            <div class="result-strip" id="choiceResult">先让每个人心里选一边，再统一举手或指人。</div>
+          </div>
+        `;
+        Array.from(els.gamePlayArea.querySelectorAll('[data-choice-index]')).forEach(btn => {
+          btn.onclick = () => {
+            els.gamePlayArea.querySelectorAll('[data-choice-index]').forEach(other => other.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('choiceResult').textContent = `${btn.textContent} 被点亮了。${prompt.result}`;
+          };
+        });
+        els.gameActionBtn.textContent = '换一个问题';
+      }
+
+      function buildWheelBackground(segments){
+        const degree = 360 / segments.length;
+        return `conic-gradient(${segments.map((segment, index) => `${segment.color} ${index * degree}deg ${(index + 1) * degree}deg`).join(', ')})`;
+      }
+
+      function renderWheelGame(game){
+        const segments = game.segments;
+        const pickIndex = Math.floor(Math.random() * segments.length);
+        const rotate = 360 * 4 + pickIndex * (360 / segments.length) + (360 / segments.length) / 2;
+        const picked = segments[(segments.length - (pickIndex % segments.length)) % segments.length];
+        state.currentPlay = { gameId: game.id, mode: 'wheel', picked, rotate };
+        els.gamePlayArea.innerHTML = `
+          <div class="play-card wheel-stage">
+            <div class="prompt-index">热场轮盘</div>
+            <div class="wheel-shell">
+              <div class="wheel-pointer"></div>
+              <div class="wheel-disc" id="wheelDisc" style="background:${buildWheelBackground(segments)}"></div>
+            </div>
+            <div class="result-strip" id="wheelResult">点一下转盘，看看这轮桌上该怎么动起来。</div>
+            <div class="wheel-legend">
+              ${segments.map(segment => `<div class="wheel-chip">${segment.label}</div>`).join('')}
+            </div>
+          </div>
+        `;
+        setTimeout(() => {
+          const disc = document.getElementById('wheelDisc');
+          if(disc){
+            disc.style.transform = `rotate(${rotate}deg)`;
+            const actualIndex = (segments.length - (Math.round((rotate % 360) / (360 / segments.length)) % segments.length)) % segments.length;
+            const resolved = segments[actualIndex] || picked;
+            setTimeout(() => {
+              document.getElementById('wheelResult').textContent = `${resolved.label}：${resolved.result}`;
+            }, 1050);
+          }
+        }, 40);
+        els.gameActionBtn.textContent = '再转一次';
+      }
+
+      function renderTruthGame(game){
+        const levels = ['soft', 'mid', 'deep'];
+        const currentLevel = state.currentPlay?.level || 'soft';
+        const list = game.levels[currentLevel];
+        const prompt = pickFromList(list);
+        state.currentPlay = { gameId: game.id, mode: 'truth', level: currentLevel, prompt, lastIndex: state.currentPlay?.lastIndex };
+        els.gamePlayArea.innerHTML = `
+          <div class="play-card">
+            <div class="prompt-index">真心话夜场版</div>
+            <div class="play-actions-inline">
+              ${levels.map(level => `<button class="mini-pill-btn ${level === currentLevel ? 'active' : ''}" data-truth-level="${level}">${level === 'soft' ? '轻一点' : level === 'mid' ? '聊深点' : '来真的'}</button>`).join('')}
+            </div>
+            <div class="play-title">${prompt.title}</div>
+            <div class="play-copy">${prompt.copy}</div>
+            <div class="play-tags">${prompt.tags.map(tag => `<span class="pill">${tag}</span>`).join('')}</div>
+          </div>
+        `;
+        Array.from(els.gamePlayArea.querySelectorAll('[data-truth-level]')).forEach(btn => {
+          btn.onclick = () => {
+            state.currentPlay = { gameId: game.id, mode: 'truth', level: btn.dataset.truthLevel };
+            renderTruthGame(game);
+          };
+        });
+        els.gameActionBtn.textContent = '换一题';
+      }
+
+      function renderVoteGame(game){
+        const poll = pickFromList(game.polls);
+        const values = poll.options.map(() => Math.floor(Math.random() * 5) + 1);
+        state.currentPlay = { gameId: game.id, mode: 'vote', poll, values, lastIndex: state.currentPlay?.lastIndex };
+        els.gamePlayArea.innerHTML = `
+          <div class="play-card">
+            <div class="prompt-index">同步投票</div>
+            <div class="play-title">${poll.title}</div>
+            <div class="vote-grid">
+              ${poll.options.map((option, index) => `<button class="option-btn" data-vote-index="${index}">${option}</button>`).join('')}
+            </div>
+            <div class="vote-bars" id="voteBars"></div>
+          </div>
+        `;
+        const bars = document.getElementById('voteBars');
+        bars.innerHTML = poll.options.map((option, index) => {
+          const max = Math.max(...values);
+          const width = Math.round(values[index] / max * 100);
+          return `
+            <div class="vote-bar">
+              <div class="vote-bar-fill" style="width:${width}%"></div>
+              <div class="vote-bar-label"><span>${option}</span><strong>${values[index]} 票</strong></div>
+            </div>
+          `;
+        }).join('');
+        Array.from(els.gamePlayArea.querySelectorAll('[data-vote-index]')).forEach(btn => {
+          btn.onclick = () => {
+            els.gamePlayArea.querySelectorAll('[data-vote-index]').forEach(other => other.classList.remove('active'));
+            btn.classList.add('active');
+            showToast(`这轮你投给了：${btn.textContent}`);
+          };
+        });
+        els.gameActionBtn.textContent = '换一轮投票';
+      }
+
+      function renderChallengeGame(game){
+        clearGameTimers();
+        const challenge = pickFromList(game.challenges);
+        state.currentPlay = { gameId: game.id, mode: 'challenge', challenge, countdown: 10, lastIndex: state.currentPlay?.lastIndex };
+        els.gamePlayArea.innerHTML = `
+          <div class="play-card">
+            <div class="prompt-index">挑战倒计时</div>
+            <div class="countdown-ring" id="countdownRing" style="--countdown:0%">
+              <strong id="countdownValue">10</strong>
+            </div>
+            <div class="play-title">${challenge.title}</div>
+            <div class="play-copy">${challenge.copy}</div>
+            <div class="play-tags">${challenge.tags.map(tag => `<span class="pill">${tag}</span>`).join('')}</div>
+          </div>
+        `;
+        els.gameActionBtn.textContent = '开始倒计时';
+        els.gameActionBtn.onclick = () => {
+          clearGameTimers();
+          let remain = 10;
+          const valueEl = document.getElementById('countdownValue');
+          const ringEl = document.getElementById('countdownRing');
+          valueEl.textContent = remain;
+          ringEl.style.setProperty('--countdown', '0%');
+          state.activeTimer = setInterval(() => {
+            remain -= 1;
+            if(valueEl) valueEl.textContent = Math.max(remain, 0);
+            if(ringEl) ringEl.style.setProperty('--countdown', `${(10 - remain) / 10 * 100}%`);
+            if(remain <= 0){
+              clearGameTimers();
+              showToast('时间到，执行挑战');
+              els.gameActionBtn.textContent = '再来一张';
+            }
+          }, 1000);
+        };
+      }
+
+      function renderStreakGame(game){
+        const currentRound = Math.min((state.currentPlay?.round || 0) + 1, game.rounds.length);
+        state.currentPlay = { gameId: game.id, mode: 'streak', round: currentRound };
+        els.gamePlayArea.innerHTML = `
+          <div class="play-card">
+            <div class="prompt-index">连击惩罚</div>
+            <div class="play-title">现在是第 ${currentRound} 击</div>
+            <div class="play-copy">${game.rounds[currentRound - 1]}</div>
+            <div class="streak-grid">
+              <div class="streak-row">
+                ${game.rounds.map((_, index) => `<div class="streak-dot ${index < currentRound ? 'active' : ''}"></div>`).join('')}
+              </div>
+            </div>
+            <div class="result-strip">每点一次就升级一轮，适合后半场慢慢把气氛拉满。</div>
+          </div>
+        `;
+        els.gameActionBtn.textContent = currentRound >= game.rounds.length ? '重新开连击' : '进入下一击';
       }
 
       function renderPromptGame(game){
-        const prompt = pickPrompt(game);
+        const prompt = pickFromList(game.prompts);
+        state.currentPlay = { gameId: game.id, mode: 'prompt', prompt, lastIndex: state.currentPlay?.lastIndex };
         els.gamePlayArea.innerHTML = `
           <div class="play-card">
             <div class="prompt-index">${game.promptTitle}</div>
@@ -1933,11 +2592,28 @@
         els.gameActionBtn.textContent = '换一张';
       }
 
+      function renderGameByType(game, forceFresh = false){
+        if(forceFresh){
+          clearGameTimers();
+          state.currentPlay = { gameId: game.id };
+        }
+        if(game.playType === 'flip') return renderFlipGame(game);
+        if(game.playType === 'choice') return renderChoiceGame(game);
+        if(game.playType === 'wheel') return renderWheelGame(game);
+        if(game.playType === 'truth') return renderTruthGame(game);
+        if(game.playType === 'vote') return renderVoteGame(game);
+        if(game.playType === 'challenge') return renderChallengeGame(game);
+        if(game.playType === 'streak') return renderStreakGame(game);
+        if(game.playType === 'dice') return renderDiceGame(game);
+        return renderPromptGame(game);
+      }
+
       function renderDiceGame(game){
         const left = Math.floor(Math.random() * 6) + 1;
         const right = Math.floor(Math.random() * 6) + 1;
         const total = left + right;
         const note = game.rules[total] || '这轮自由发挥，指定一个人先开口。';
+        state.currentPlay = { gameId: game.id, mode: 'dice', total };
         els.gamePlayArea.innerHTML = `
           <div class="play-card">
             <div class="prompt-index">掷骰结果</div>
@@ -1955,8 +2631,9 @@
       function openGameModal(gameId){
         const game = gameCatalog[gameId];
         if(!game) return;
+        clearGameTimers();
         state.activeGameId = gameId;
-        state.currentPlay = null;
+        state.currentPlay = { gameId };
         els.gameModalTitle.textContent = game.title;
         els.gameModalDesc.textContent = game.desc;
         els.gameMetrics.innerHTML = renderMetricCards(game.metrics);
@@ -1964,18 +2641,12 @@
           <div class="play-card">
             <div class="prompt-index">玩法说明</div>
             <div class="play-title">${game.title}</div>
-            <div class="play-copy">${game.playType === 'dice' ? '点下按钮直接掷两颗骰子，按结果走桌上动作。' : '点下按钮就会随机给你一张题卡，适合当前这场局直接开始。'}</div>
+            <div class="play-copy">${game.playType === 'wheel' ? '点一下就转，适合把热场节奏往上推。' : game.playType === 'challenge' ? '先读题，再开倒计时，时间压力会让桌上更有戏。' : game.playType === 'vote' ? '先让大家心里投票，再一起看结果。' : game.playType === 'truth' ? '先选档位，再抽题。越往后越适合聊深。' : '点一下就能开始，不需要额外解释规则。'}</div>
             <div class="play-tags">${game.labels.map(label => `<span class="pill">${label}</span>`).join('')}</div>
           </div>
         `;
-        els.gameActionBtn.textContent = game.playType === 'dice' ? '掷一次' : '开始';
-        els.gameActionBtn.onclick = () => {
-          if(game.playType === 'dice'){
-            renderDiceGame(game);
-            return;
-          }
-          renderPromptGame(game);
-        };
+        els.gameActionBtn.textContent = game.playType === 'dice' ? '掷一次' : game.playType === 'wheel' ? '转起来' : game.playType === 'challenge' ? '开始挑战' : game.playType === 'streak' ? '进入第一击' : '开始';
+        els.gameActionBtn.onclick = () => renderGameByType(game, true);
         openModal('gameModal');
       }
 
@@ -2061,7 +2732,7 @@
           coverClass: parties.length % 2 ? 'alt-1' : 'alt-2',
           capacity,
           baseJoined: 0,
-          attachedGames: ['icebreaker', 'dice'],
+          attachedGames: ['firstshot', 'wheel', 'dice'],
           createdAt: Date.now(),
           generated: true
         });
@@ -2085,9 +2756,7 @@
         renderHostCurrentCard();
         renderSignups();
         renderRefillTemplates();
-        renderGameList(els.dailyGames, getDailyGames());
-        renderGameList(els.innerGames, [gameCatalog.icebreaker, gameCatalog.truth]);
-        renderGameList(els.outerGames, [gameCatalog.dice]);
+        renderGameHome();
         bindGameActions();
         syncRoute();
       }
@@ -2136,6 +2805,7 @@
 
       window.addEventListener('click', (event) => {
         if(event.target.classList.contains('modal-layer')){
+          clearGameTimers();
           event.target.classList.remove('open');
         }
       });
