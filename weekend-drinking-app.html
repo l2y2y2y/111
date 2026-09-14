@@ -1102,6 +1102,9 @@
   <script>
     (function(){
       const DRAFT_KEY = 'weekend-drinking-host-draft';
+      const PARTIES_KEY = 'weekend-drinking-parties';
+      const SIGNUPS_KEY = 'weekend-drinking-signups';
+      const VIEWER_STATUS_KEY = 'weekend-drinking-viewer-status';
       const state = {
         currentView: 'home',
         currentFeed: 'today',
@@ -1301,6 +1304,7 @@
         }
         party.capacity = Number(party.capacity) || 8;
         party.baseJoined = Number(party.baseJoined) || 0;
+        party.signupOpen = party.signupOpen !== false;
         party.createdAt = party.createdAt || Date.now();
         party.share = buildShare(party);
         return party;
@@ -1327,6 +1331,7 @@
         state.currentView = view;
         els.views.forEach(v => v.classList.toggle('active', v.dataset.view === view));
         els.navBtns.forEach(btn => btn.classList.toggle('active', btn.dataset.nav === view));
+        syncRoute();
       }
 
       function getSelectedParty(){
@@ -1339,9 +1344,14 @@
         const confirmed = partySignups.filter(item => item.status === 'confirmed').length;
         const waitlist = partySignups.filter(item => item.status === 'waitlist').length;
         const joined = Math.min(party.capacity, party.baseJoined + confirmed);
-        const remain = Math.max(party.capacity - joined, 0);
-        const quotaText = remain > 0 ? `还差 ${remain} 人` : (waitlist > 0 ? '已满，可候补' : '已满员');
-        return { pending, confirmed, waitlist, joined, remain, quotaText };
+        const reserved = Math.min(party.capacity, party.baseJoined + confirmed + pending);
+        const remain = Math.max(party.capacity - reserved, 0);
+        const quotaText = !party.signupOpen
+          ? '已暂停报名'
+          : remain > 0
+            ? `还差 ${remain} 人`
+            : '已满，可候补';
+        return { pending, confirmed, waitlist, joined, reserved, remain, quotaText };
       }
 
       function buildShare(party){
@@ -1358,6 +1368,136 @@
         if(/明|tomorrow/i.test(time)) return 'tomorrow';
         if(/周|星期|本周/i.test(time)) return 'week';
         return 'today';
+      }
+
+      function encodePartyPayload(party){
+        try{
+          return btoa(unescape(encodeURIComponent(JSON.stringify({
+            id: party.id,
+            feed: party.feed,
+            name: party.name,
+            desc: party.desc,
+            time: party.time,
+            venue: party.venue,
+            budget: party.budget,
+            tags: party.tags,
+            vibe: party.vibe,
+            fit: party.fit,
+            theme: party.theme,
+            organizer: party.organizer,
+            coverClass: party.coverClass,
+            capacity: party.capacity,
+            baseJoined: party.baseJoined,
+            attachedGames: party.attachedGames,
+            createdAt: party.createdAt,
+            signupOpen: party.signupOpen,
+            generated: party.generated
+          }))));
+        }catch(error){
+          return '';
+        }
+      }
+
+      function decodePartyPayload(value){
+        try{
+          return JSON.parse(decodeURIComponent(escape(atob(value))));
+        }catch(error){
+          return null;
+        }
+      }
+
+      function createShareLink(party){
+        const url = new URL(window.location.href);
+        url.searchParams.set('party', party.id);
+        url.searchParams.set('view', 'detail');
+        if(party.generated){
+          const payload = encodePartyPayload(party);
+          if(payload) url.searchParams.set('partyData', payload);
+        }else{
+          url.searchParams.delete('partyData');
+        }
+        return url.toString();
+      }
+
+      function syncPageMeta(){
+        const party = getSelectedParty();
+        const stats = getPartyStats(party);
+        document.title = `${party.name}｜今晚喝点什么`;
+        const desc = `${party.time} · ${party.venue} · ${stats.quotaText} · ${party.vibe}`;
+        document.querySelector('meta[name="description"]')?.setAttribute('content', desc);
+        document.querySelector('meta[property="og:title"]')?.setAttribute('content', `${party.name}｜今晚喝点什么`);
+        document.querySelector('meta[property="og:description"]')?.setAttribute('content', desc);
+      }
+
+      function syncRoute(){
+        try{
+          const url = new URL(window.location.href);
+          const party = getSelectedParty();
+          url.searchParams.set('party', state.selectedPartyId);
+          if(party?.generated){
+            const payload = encodePartyPayload(party);
+            if(payload) url.searchParams.set('partyData', payload);
+          }else{
+            url.searchParams.delete('partyData');
+          }
+          if(state.currentView === 'home'){
+            url.searchParams.delete('view');
+          }else{
+            url.searchParams.set('view', state.currentView);
+          }
+          window.history.replaceState({}, '', url.toString());
+        }catch(error){}
+        syncPageMeta();
+      }
+
+      function initFromRoute(){
+        try{
+          const url = new URL(window.location.href);
+          const partyId = url.searchParams.get('party');
+          const partyData = url.searchParams.get('partyData');
+          const view = url.searchParams.get('view');
+          if(partyData){
+            const payload = decodePartyPayload(partyData);
+            if(payload && !parties.some(item => item.id === payload.id)){
+              parties.unshift(ensurePartyData(payload));
+            }
+          }
+          if(partyId && parties.some(item => item.id === partyId)){
+            state.selectedPartyId = partyId;
+          }
+          if(view && ['home','detail','host','games'].includes(view)){
+            state.currentView = view;
+          }
+        }catch(error){}
+      }
+
+      function saveRuntime(){
+        try{
+          localStorage.setItem(PARTIES_KEY, JSON.stringify(parties));
+          localStorage.setItem(SIGNUPS_KEY, JSON.stringify(state.signups));
+          localStorage.setItem(VIEWER_STATUS_KEY, JSON.stringify(state.viewerStatus));
+        }catch(error){}
+      }
+
+      function loadRuntime(){
+        try{
+          const savedParties = JSON.parse(localStorage.getItem(PARTIES_KEY) || 'null');
+          if(Array.isArray(savedParties) && savedParties.length){
+            parties.splice(0, parties.length, ...savedParties);
+          }
+        }catch(error){}
+        try{
+          const savedSignups = JSON.parse(localStorage.getItem(SIGNUPS_KEY) || 'null');
+          if(Array.isArray(savedSignups) && savedSignups.length){
+            state.signups = savedSignups;
+          }
+        }catch(error){}
+        try{
+          const savedViewerStatus = JSON.parse(localStorage.getItem(VIEWER_STATUS_KEY) || 'null');
+          if(savedViewerStatus && typeof savedViewerStatus === 'object'){
+            state.viewerStatus = savedViewerStatus;
+          }
+        }catch(error){}
       }
 
       function getVisibleParties(){
@@ -1510,7 +1650,7 @@
             <div class="info-card"><div class="label">时间</div><div class="value">${party.time}</div></div>
             <div class="info-card"><div class="label">地点</div><div class="value">${party.venue}</div></div>
             <div class="info-card"><div class="label">预算</div><div class="value">${party.budget}</div></div>
-            <div class="info-card"><div class="label">已占位</div><div class="value">${stats.joined}/${party.capacity}</div></div>
+            <div class="info-card"><div class="label">已确认 / 待确认</div><div class="value">${stats.joined}/${party.capacity} · ${stats.pending} 待确认</div></div>
           </div>
           <div class="pill-list">${party.tags.map(tag => `<span class="pill">${tag}</span>`).join('')}</div>
           <div class="body-text">${party.desc}</div>
@@ -1530,13 +1670,17 @@
           </div>
           <div class="btn-row">
             <button class="ghost-btn" id="detailShareBtn">转发补位</button>
-            <button class="primary-btn" id="detailActionBtn">${viewerStatus === 'open' ? '立即报名' : viewerStatus === 'pending' ? '查看状态' : viewerStatus === 'confirmed' ? '查看集合信息' : '查看候补状态'}</button>
+            <button class="primary-btn" id="detailActionBtn">${!party.signupOpen && viewerStatus === 'open' ? '报名已暂停' : viewerStatus === 'open' ? (stats.remain > 0 ? '立即报名' : '加入候补') : viewerStatus === 'pending' ? '查看状态' : viewerStatus === 'confirmed' ? '查看集合信息' : '查看候补状态'}</button>
           </div>
-          <div class="small-note">适合 ${party.fit} · 主理人 ${party.organizer}</div>
+          <div class="small-note">适合 ${party.fit} · 主理人 ${party.organizer} · ${stats.waitlist ? `${stats.waitlist} 人候补中` : '当前无候补'}</div>
         `;
 
         document.getElementById('detailShareBtn').onclick = openShareModal;
         document.getElementById('detailActionBtn').onclick = () => {
+          if(!party.signupOpen && viewerStatus === 'open'){
+            showToast('主理人已暂停报名，稍后再来看看');
+            return;
+          }
           if(viewerStatus === 'open'){
             openModal('signupModal');
             return;
@@ -1578,6 +1722,10 @@
             <div class="metric"><div class="num">${stats.pending}</div><div class="cap">待确认</div></div>
             <div class="metric"><div class="num">${party.attachedGames.length}</div><div class="cap">已挂玩法</div></div>
           </div>
+          <div class="btn-row">
+            <button class="ghost-btn" id="toggleSignupBtn">${party.signupOpen ? '暂停报名' : '恢复报名'}</button>
+            <button class="primary-btn" id="copyPartyLinkBtn">复制直达链接</button>
+          </div>
           <div class="host-party-pills">
             ${visibleParties.map(item => `
               <button class="party-switch ${item.id === party.id ? 'active' : ''}" data-switch-party="${item.id}">
@@ -1592,6 +1740,13 @@
             renderAll();
           };
         });
+        document.getElementById('toggleSignupBtn').onclick = () => {
+          party.signupOpen = !party.signupOpen;
+          saveRuntime();
+          renderAll();
+          showToast(party.signupOpen ? '已恢复报名' : '已暂停报名');
+        };
+        document.getElementById('copyPartyLinkBtn').onclick = () => copyText(createShareLink(party));
       }
 
       function renderSignups(){
@@ -1602,7 +1757,7 @@
             <div class="list-head">
               <div>
                 <div class="list-title">${item.name}</div>
-                <div class="small">${item.contact}</div>
+                <div class="small">${item.contact} · ${item.submittedAt || '刚刚报名'}</div>
               </div>
               <span class="tag">${hostStatusLabel(item.status)}</span>
             </div>
@@ -1623,12 +1778,20 @@
           btn.onclick = () => {
             const target = state.signups.find(item => item.id === btn.dataset.signupId);
             if(!target) return;
-            target.status = btn.dataset.signupAction;
+            const party = parties.find(item => item.id === target.partyId);
+            const currentStats = getPartyStats(party);
+            if(btn.dataset.signupAction === 'confirmed' && currentStats.joined >= party.capacity && target.status !== 'confirmed'){
+              target.status = 'waitlist';
+              showToast(`当前已满员，${target.name} 已自动转入候补`);
+            }else{
+              target.status = btn.dataset.signupAction;
+              showToast(`已将 ${target.name} 设为${hostStatusLabel(target.status)}`);
+            }
             if(state.latestSignupIdByParty[target.partyId] === target.id){
               state.viewerStatus[target.partyId] = target.status === 'rejected' ? 'open' : target.status;
             }
+            saveRuntime();
             renderAll();
-            showToast(`已将 ${target.name} 设为${hostStatusLabel(target.status)}`);
           };
         });
       }
@@ -1701,6 +1864,7 @@
         }
         party.attachedGames.push(gameId);
         party.share = buildShare(party);
+        saveRuntime();
         renderAll();
         showToast(`已把 ${game.title} 加入本局`);
       }
@@ -1708,10 +1872,12 @@
       function openShareModal(){
         const party = getSelectedParty();
         party.share = buildShare(party);
+        const deepLink = createShareLink(party);
         state.shareItems = [
-          { title: '发给微信好友', text: party.share.friend },
-          { title: '分享到朋友圈', text: party.share.timeline },
-          { title: '群补位短文案', text: party.share.group }
+          { title: '发给微信好友', text: party.share.friend, link: deepLink, mode: 'share' },
+          { title: '分享到朋友圈', text: party.share.timeline, link: deepLink, mode: 'copy' },
+          { title: '群补位短文案', text: party.share.group, link: deepLink, mode: 'copy' },
+          { title: '复制直达链接', text: deepLink, link: deepLink, mode: 'link' }
         ];
         els.shareList.innerHTML = state.shareItems.map((item, index) => `
           <button class="share-option" data-share-index="${index}">
@@ -1720,7 +1886,17 @@
           </button>
         `).join('');
         Array.from(els.shareList.querySelectorAll('[data-share-index]')).forEach(btn => {
-          btn.onclick = () => copyText(state.shareItems[Number(btn.dataset.shareIndex)].text);
+          btn.onclick = async () => {
+            const item = state.shareItems[Number(btn.dataset.shareIndex)];
+            if(item.mode === 'share' && navigator.share){
+              try{
+                await navigator.share({ title: party.name, text: item.text, url: item.link });
+                showToast('已调用系统分享');
+                return;
+              }catch(error){}
+            }
+            copyText(item.mode === 'link' ? item.link : `${item.text}\n${item.link}`);
+          };
         });
         openModal('shareModal');
       }
@@ -1822,14 +1998,18 @@
           contact,
           intro: intro || '想先来感受一下这场局。',
           preference: preference || '未填写',
-          status: 'pending',
-          eta: '可准时到'
+          status: (!party.signupOpen || getPartyStats(party).remain <= 0) ? 'waitlist' : 'pending',
+          eta: '可准时到',
+          submittedAt: new Date().toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' })
         };
 
         state.signups.unshift(signup);
-        state.viewerStatus[party.id] = 'pending';
+        state.viewerStatus[party.id] = signup.status;
         state.latestSignupIdByParty[party.id] = signup.id;
-        els.signupResult.textContent = '报名成功。你已经进入“待确认”，主理人会尽快处理。';
+        saveRuntime();
+        els.signupResult.textContent = signup.status === 'waitlist'
+          ? '这场局现在已满，你已经进入候补，有空位会优先提醒。'
+          : '报名成功。你已经进入“待确认”，主理人会尽快处理。';
         els.signupResult.classList.add('show');
         document.getElementById('signupName').value = '';
         document.getElementById('signupContact').value = '';
@@ -1882,14 +2062,17 @@
           capacity,
           baseJoined: 0,
           attachedGames: ['icebreaker', 'dice'],
-          createdAt: Date.now()
+          createdAt: Date.now(),
+          generated: true
         });
         parties.unshift(party);
         state.selectedPartyId = party.id;
         state.currentFeed = party.feed;
         state.currentFilter = '';
+        state.viewerStatus[party.id] = 'open';
         fillDraft({});
         try{ localStorage.removeItem(DRAFT_KEY); }catch(error){}
+        saveRuntime();
         renderAll();
         switchView('detail');
         openShareModal();
@@ -1906,6 +2089,7 @@
         renderGameList(els.innerGames, [gameCatalog.icebreaker, gameCatalog.truth]);
         renderGameList(els.outerGames, [gameCatalog.dice]);
         bindGameActions();
+        syncRoute();
       }
 
       els.navBtns.forEach(btn => btn.addEventListener('click', () => switchView(btn.dataset.nav)));
@@ -1961,7 +2145,11 @@
         if(draft) fillDraft(draft);
       }catch(error){}
 
+      loadRuntime();
+      parties.forEach(ensurePartyData);
+      initFromRoute();
       renderAll();
+      switchView(state.currentView);
     })();
   </script>
 </body>
