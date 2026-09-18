@@ -29,6 +29,37 @@
     .sub{margin-top:10px;color:var(--muted);font-size:14px;line-height:1.7}
     .card,.panel,.party,.game,.mini{background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:var(--r)}
     .heroCard{padding:18px;background:linear-gradient(145deg,rgba(255,107,143,.2),rgba(159,115,255,.18) 55%,rgba(255,191,109,.12));box-shadow:0 18px 50px rgba(0,0,0,.25)}
+    .coverCard{padding:18px;border-radius:26px;border:1px solid rgba(255,255,255,.12);background:linear-gradient(155deg,rgba(255,107,143,.22),rgba(159,115,255,.18) 52%,rgba(255,191,109,.10));box-shadow:0 18px 50px rgba(0,0,0,.25);position:relative;overflow:hidden}
+    .coverCard.alt{background:linear-gradient(155deg,rgba(255,191,109,.18),rgba(159,115,255,.18) 48%,rgba(100,215,167,.10))}
+    .coverCard:before{content:"";position:absolute;right:-30px;top:-30px;width:150px;height:150px;border-radius:50%;background:rgba(255,255,255,.06);filter:blur(8px)}
+    .coverTop{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;position:relative;z-index:1}
+    .coverKicker{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#ffe4ac;font-weight:800}
+    .sceneLine{margin-top:8px;color:#efe5fb;font-size:13px;line-height:1.75;max-width:270px}
+    .avatarMeta{display:grid;justify-items:end;gap:6px}
+    .avatar{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.18);font-weight:900}
+    .progressWrap{margin-top:14px;position:relative;z-index:1}
+    .progressLabel{display:flex;justify-content:space-between;gap:12px;font-size:12px;color:#f3e9ff}
+    .progressTrack{margin-top:8px;height:10px;border-radius:999px;background:rgba(255,255,255,.10);overflow:hidden}
+    .progressTrack i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--pink),var(--gold))}
+    .quickFacts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px;position:relative;z-index:1}
+    .fact{padding:12px;border-radius:16px;background:rgba(9,7,14,.22);border:1px solid rgba(255,255,255,.10)}
+    .fact span{display:block;font-size:11px;color:#d4c6e7}
+    .fact b{display:block;margin-top:4px;font-size:15px}
+    .spotlight{margin-top:14px;padding:14px;border-radius:18px;background:rgba(11,9,17,.28);border:1px solid rgba(255,255,255,.10);position:relative;z-index:1}
+    .spotlight b{display:block;font-size:16px}
+    .spotlight .small{display:block;margin-top:6px;color:#e9dbfb;line-height:1.7}
+    .doubleActions{display:grid;grid-template-columns:1.2fr .8fr;gap:10px}
+    .statusStack{display:grid;gap:12px}
+    .sceneCard{padding:16px;border-radius:22px;background:rgba(255,255,255,.05);border:1px solid var(--line)}
+    .hostRow{display:flex;justify-content:space-between;gap:12px;align-items:center}
+    .hostMeta{display:flex;gap:10px;align-items:center}
+    .hostMeta .avatar{width:46px;height:46px}
+    .fitCard{margin-top:12px;padding:13px 14px;border-radius:18px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.10)}
+    .fitCard b{display:block;font-size:14px}
+    .fitCard .small{display:block;margin-top:6px;line-height:1.7}
+    .miniPills{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .miniPill{padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.10);font-size:12px;color:#f7f1fb}
+    .compactGrid{gap:10px}
     .row{display:flex;gap:8px;flex-wrap:wrap}.pill,.tag,.chip{display:inline-flex;align-items:center;justify-content:center;padding:7px 10px;border-radius:999px;font-size:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06);color:var(--text)}
     .chip{cursor:pointer;color:var(--muted);min-height:40px;touch-action:manipulation}
     .chip.active{background:linear-gradient(135deg,rgba(255,107,143,.28),rgba(159,115,255,.3));color:#fff}
@@ -55,6 +86,11 @@
     .game{padding:14px}
     .game h4{font-size:17px}
     .game .why{margin-top:8px;color:var(--muted);font-size:13px;line-height:1.7}
+    .gameLead{margin-top:8px;font-size:15px;line-height:1.55;font-weight:800}
+    .gameMeta{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+    .gameMeta .metricMini{padding:9px 8px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);text-align:center}
+    .metricMini span{display:block;font-size:11px;color:var(--sub)}
+    .metricMini b{display:block;margin-top:4px;font-size:13px}
     .badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
     .badge{padding:6px 10px;border-radius:999px;font-size:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12)}
     .inline{display:flex;justify-content:space-between;gap:12px;align-items:center}
@@ -87,8 +123,23 @@
     .stepList{display:grid;gap:10px;margin-top:12px}
     .stepItem{padding:14px;border-radius:18px;background:rgba(255,255,255,.04);border:1px solid var(--line)}
     .stepItem b{display:block;font-size:15px;margin-bottom:4px}
+    .flow{display:grid;gap:10px}
+    .flowCard{padding:14px;border-radius:18px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.10)}
+    .flowNo{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.12);font-size:12px;font-weight:900;margin-bottom:8px}
+    .templateRow{display:flex;flex-wrap:wrap;gap:8px}
+    .templateChip{padding:10px 12px;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.10);color:var(--muted);font-weight:700;cursor:pointer}
+    .templateChip.active{background:linear-gradient(135deg,rgba(255,107,143,.28),rgba(159,115,255,.30));color:#fff}
+    .previewCard{padding:16px;border-radius:22px;background:linear-gradient(145deg,rgba(255,111,150,.12),rgba(159,115,255,.14) 55%,rgba(255,191,109,.10));border:1px solid rgba(255,255,255,.10)}
+    .shareBubble{margin-top:12px;padding:14px;border-radius:18px;background:rgba(13,10,19,.30);border:1px solid rgba(255,255,255,.10);color:#f3ebfe;line-height:1.8}
+    .materialGrid{display:grid;gap:10px}
+    .materialCard{padding:14px;border-radius:18px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.10)}
+    .materialCard b{display:block;font-size:14px}
+    .materialCard .small{display:block;margin-top:6px;line-height:1.7}
     .toast{position:fixed;left:50%;bottom:120px;transform:translateX(-50%);background:rgba(9,8,14,.92);border:1px solid rgba(255,255,255,.12);padding:10px 14px;border-radius:999px;font-size:12px;opacity:0;pointer-events:none;transition:.2s}
     .toast.show{opacity:1}
+    @media (max-width:420px){
+      .doubleActions,.quickFacts,.gameMeta{grid-template-columns:1fr}
+    }
   </style>
 </head>
 <body>
@@ -131,8 +182,13 @@
       ];
       const viewTitles = {home:'今晚推荐',party:'局详情',host:'发局',games:'玩法选择'};
       const parties = [
-        {id:'p1',name:'周五精酿轻松局',time:'今晚 20:30',venue:'三里屯某精酿吧',quota:'还差 1 人',size:6,cap:8,vibe:'微醺轻社交',pitch:'新手友好、不会太社恐，适合下班后喝一杯。',host:'Mika',games:['draw','undercover','truth']},
-        {id:'p2',name:'威士忌入门慢喝局',time:'今晚 21:00',venue:'国贸附近酒馆',quota:'还差 3 人',size:3,cap:6,vibe:'认真喝威士忌',pitch:'灯光偏暗，适合想认真喝和认真聊的人。',host:'Allen',games:['gomoku','soup','doudizhu']}
+        {id:'p1',name:'周五精酿轻松局',time:'今晚 20:30',venue:'三里屯某精酿吧',quota:'还差 1 人',size:6,cap:8,vibe:'微醺轻社交',pitch:'新手友好、不会太社恐，适合下班后喝一杯。',host:'Mika',games:['draw','undercover','truth'],sceneTag:'轻社交 / 入门友好',scene:'木头吧台、低声说话、第一轮碰杯后就能慢慢聊开。',fit:'第一次来线下局也不会太有压力',hostStyle:'会主动带第一轮节奏的人',accent:'pink'},
+        {id:'p2',name:'威士忌入门慢喝局',time:'今晚 21:00',venue:'国贸附近酒馆',quota:'还差 3 人',size:3,cap:6,vibe:'认真喝威士忌',pitch:'灯光偏暗，适合想认真喝和认真聊的人。',host:'Allen',games:['gomoku','soup','doudizhu'],sceneTag:'认真喝 / 深聊局',scene:'更安静、更有边界感，适合想认真认识新朋友的人。',fit:'适合想避开闹局、认真喝一杯的人',hostStyle:'会把聊天质量守住的人',accent:'alt'}
+      ];
+      const hostTemplates = [
+        {id:'craft',name:'轻社交精酿局',time:'今晚 20:30',cap:'8 人',venue:'三里屯某精酿吧',pitch:'低压力、容易接话，第一次一起喝也不会太尴尬。',fit:'新手友好',leadGame:'你画我猜'},
+        {id:'whisky',name:'认真喝威士忌局',time:'今晚 21:00',cap:'6 人',venue:'国贸附近酒馆',pitch:'灯光偏暗、杯里内容比音量更重要，适合认真聊。',fit:'深聊向',leadGame:'海龟汤'},
+        {id:'rooftop',name:'周六 rooftop 鸡尾酒局',time:'周六 20:30',cap:'10 人',venue:'朝阳 rooftop 酒吧',pitch:'夜景在前、节奏更轻，适合朋友带朋友的转场局。',fit:'熟人带新朋友',leadGame:'谁是卧底'}
       ];
       const internalGames = {
         wheel:{id:'wheel',title:'喝酒轮盘',type:'内置玩法',people:'3-5+',desc:'适合第一轮喝完后快速把气氛带起来。',action:'立即开转盘',copy:'轮盘类最适合热场，谁中谁喝。'},
@@ -181,6 +237,7 @@
         moment: 'starter',
         mood: 'funny',
         mode: 'wechat',
+        hostTemplate:'craft',
         attached: {p1:['draw','undercover','truth'],p2:['gomoku','soup','doudizhu']},
         signedUp:{},
         playState:{wheel:null,truth:null,challenge:null},
@@ -259,13 +316,17 @@
           </div>`;
       };
       const party = () => parties.find(i => i.id === state.partyId) || parties[0];
+      const nextParty = () => parties.find(i => i.id !== state.partyId) || parties[0];
+      const hostTemplate = () => hostTemplates.find(i => i.id === state.hostTemplate) || hostTemplates[0];
       const isSignedUp = id => Boolean(state.signedUp[id]);
       const partyStats = p => {
         const signed = isSignedUp(p.id) ? 1 : 0;
         const size = Math.min(p.size + signed, p.cap);
         return {size, cap:p.cap, left:Math.max(p.cap - size, 0)};
       };
-      const attachedGames = () => (state.attached[state.partyId] || []).map(id => internalGames[id] || miniGames.find(g => g.id === id)).filter(Boolean);
+      const fillRate = p => Math.max(12, Math.round((partyStats(p).size / partyStats(p).cap) * 100));
+      const attachedGamesFor = id => (state.attached[id] || []).map(gameId => internalGames[gameId] || miniGames.find(g => g.id === gameId)).filter(Boolean);
+      const attachedGames = () => attachedGamesFor(state.partyId);
       const score = game => {
         let s = 0;
         if (state.mode === 'wechat' && game.platform === '微信优先') s += 4;
@@ -282,52 +343,91 @@
       const gameCard = g => `
         <div class="game">
           <div class="inline"><h4>${g.title}</h4><span class="pill">${g.platform}</span></div>
-          <div class="why">${g.why || g.desc}</div>
+          <div class="gameLead">${g.why || g.desc}</div>
+          <div class="gameMeta">
+            <div class="metricMini"><span>适合人数</span><b>${g.people}</b></div>
+            <div class="metricMini"><span>现在动作</span><b>${g.platform === '抖音补充' ? '抖音搜' : '微信搜'}</b></div>
+            <div class="metricMini"><span>今晚价值</span><b>${g.platform === '微信优先' ? '拉人快' : '补充位'}</b></div>
+          </div>
           <div class="badges">
             <span class="badge">手机可玩</span>
             <span class="badge">${g.platform === '抖音补充' ? '抖音内搜索' : '微信内搜索'}</span>
             <span class="badge">${g.people}</span>
           </div>
           <div class="btns">
-            <button class="btn" data-copy-game="${g.id}">${g.platform === '抖音补充' ? '复制抖音搜索词' : '复制微信搜索词'}</button>
-            <button class="btn2" data-attach="${g.id}">${(state.attached[state.partyId]||[]).includes(g.id) ? '已加入本局' : '加入本局'}</button>
+            <button class="btn" data-copy-game="${g.id}">${g.platform === '抖音补充' ? '复制抖音搜索词' : '去微信搜它'}</button>
+            <button class="btn2" data-attach="${g.id}">${(state.attached[state.partyId]||[]).includes(g.id) ? '已挂到这场' : '挂到这场'}</button>
           </div>
         </div>`;
       const internalCard = g => `
         <div class="game">
           <div class="inline"><h4>${g.title}</h4><span class="pill">${g.type}</span></div>
-          <div class="why">${g.desc}</div>
+          <div class="gameLead">${g.desc}</div>
+          <div class="gameMeta">
+            <div class="metricMini"><span>适合人数</span><b>${g.people}</b></div>
+            <div class="metricMini"><span>玩法类型</span><b>H5 直玩</b></div>
+            <div class="metricMini"><span>这时最值</span><b>${g.id === 'wheel' ? '热场' : g.id === 'truth' ? '升温' : '起哄'}</b></div>
+          </div>
           <div class="badges"><span class="badge">H5 内直玩</span><span class="badge">${g.people}</span></div>
           <div class="btns">
-            <button class="btn" data-tool="${g.id}">${g.action}</button>
-            <button class="btn2" data-attach="${g.id}">${(state.attached[state.partyId]||[]).includes(g.id) ? '已加入本局' : '加入本局'}</button>
+            <button class="btn" data-tool="${g.id}">${g.id === 'challenge' ? '立刻开玩' : g.action}</button>
+            <button class="btn2" data-attach="${g.id}">${(state.attached[state.partyId]||[]).includes(g.id) ? '已挂到这场' : '挂到这场'}</button>
           </div>
         </div>`;
       const shareText = p => {
-        const g = attachedGames().slice(0,2).map(x=>x.title).join(' + ');
-        return `${p.name}｜${p.time}，${p.venue}，${p.quota}。今晚玩法：${g || '到场再决定'}。想来直接报名。`;
+        const g = attachedGamesFor(p.id).slice(0,1)[0];
+        return `${p.name}｜${p.time}，${p.venue}，${partyStats(p).left > 0 ? `还差 ${partyStats(p).left} 人` : '人已快齐'}。适合${p.fit}，今晚先玩${g ? g.title : '到场再决定'}，想来直接报。`;
       };
+      const templateShareText = t => `${t.name}｜${t.time}，${t.venue}，适合${t.fit}。这场先玩${t.leadGame}破冰，想来一起喝一杯的直接回我。`;
       const renderHome = () => {
         const p = party();
         const stats = partyStats(p);
-        const leadGame = recommended()[0];
+        const leadGame = attachedGamesFor(p.id)[0] || recommended()[0];
+        const alternate = nextParty();
         return `
           <div class="hero">
             <div class="eyebrow">Tonight's plan</div>
-            <h1>三秒挑一场，五分钟把人约起来。</h1>
-            <p class="sub">首页只做一件事：帮你先看懂今晚最值得发的一场，再决定报不报。其他动作放到下一层，不在首屏抢注意力。</p>
+            <h1>今晚去哪喝、先玩什么，这里直接帮你挑好。</h1>
+            <p class="sub">正式版先把判断成本压到最低：先看这一场值不值得去，再决定报名、转发还是换一场，不让你读一屏说明才开始行动。</p>
           </div>
-          <div class="card heroCard">
-            <h3>${p.name}</h3>
-            <p class="sub">${p.time} · ${p.venue} · ${isSignedUp(p.id) ? '你已报名，待主理人确认' : (stats.left > 0 ? `还差 ${stats.left} 人` : '本局已满') }</p>
-            <div class="row" style="margin-top:12px"><span class="pill">${p.vibe}</span><span class="pill">微信优先</span><span class="pill">手机端可用</span></div>
-            <div class="btns"><button class="btn full" data-nav="party">查看并报名</button></div>
-            <div class="statusNote">先点进详情看时间、地点和今晚玩法，再决定报名或转发，不在首页同时做太多动作。今晚建议先玩：<b>${leadGame.title}</b>，因为${leadGame.why}</div>
+          <div class="coverCard ${p.accent === 'alt' ? 'alt' : ''}">
+            <div class="coverTop">
+              <div>
+                <div class="coverKicker">${p.sceneTag}</div>
+                <h3>${p.name}</h3>
+                <p class="sceneLine">${p.scene}</p>
+              </div>
+              <div class="avatarMeta">
+                <div class="avatar">${p.host.slice(0,1)}</div>
+                <span class="small">主理人 ${p.host}</span>
+              </div>
+            </div>
+            <div class="progressWrap">
+              <div class="progressLabel">
+                <span>${isSignedUp(p.id) ? '你已报名，待主理人确认' : (stats.left > 0 ? `还差 ${stats.left} 人成局` : '这场局已快满员')}</span>
+                <b>${stats.size}/${stats.cap}</b>
+              </div>
+              <div class="progressTrack"><i style="width:${fillRate(p)}%"></i></div>
+            </div>
+            <div class="quickFacts">
+              <div class="fact"><span>时间</span><b>${p.time}</b></div>
+              <div class="fact"><span>地点</span><b>${p.venue}</b></div>
+              <div class="fact"><span>适合谁来</span><b>${p.fit}</b></div>
+            </div>
+            <div class="spotlight">
+              <b>今晚建议先玩：${leadGame.title}</b>
+              <span class="small">${leadGame.why || leadGame.desc}</span>
+            </div>
+            <div class="btns doubleActions">
+              <button class="btn full" data-nav="party">查看并报名</button>
+              <button class="btn2" data-cycle-party>换一场看看</button>
+            </div>
+            <div class="statusNote">如果这场不合适，下一场可以直接切到 <b>${alternate.name}</b>；如果这场合适，就别再研究说明，直接去详情确认时间、地点和今晚玩法。</div>
           </div>
           <div class="section">
             <h3>今晚最适合的 3 个</h3>
-            <p class="desc">这里不再继续放 4399 外链，只给更适合微信分发的小游戏入口。</p>
-            <div class="grid">${recommended().map(gameCard).join('')}</div>
+            <p class="desc">先给你能立刻决定的 3 个，不让你在玩法库里慢慢翻。重点是“现在为什么该玩它”。</p>
+            <div class="grid compactGrid">${recommended().map(gameCard).join('')}</div>
           </div>`;
       };
       const renderParty = () => {
@@ -337,57 +437,112 @@
           <div class="hero">
             <div class="eyebrow">Tonight's party</div>
             <h1>${p.name}</h1>
-            <p class="sub">${p.pitch}</p>
+            <p class="sub">${p.pitch} 这不是一张静态介绍卡，而是一场今晚随时可以发出去、随时能继续挂玩法的局。</p>
           </div>
           ${isSignedUp(p.id) ? `<div class="statusNote ok">你已报名这场局，当前状态为待主理人确认。现在可以直接复制补位文案，或者去补一个更适合今晚的玩法。</div>` : ''}
-          <div class="party">
-            <div class="row"><span class="pill">${p.vibe}</span><span class="pill">主理人 ${p.host}</span></div>
-            <div class="metrics">
-              <div class="metric"><span class="small">时间</span><b>${p.time}</b></div>
-              <div class="metric"><span class="small">地点</span><b>${p.venue}</b></div>
-              <div class="metric"><span class="small">人数</span><b>${stats.size}/${stats.cap}</b></div>
+          <div class="sceneCard">
+            <div class="hostRow">
+              <div class="hostMeta">
+                <div class="avatar">${p.host.slice(0,1)}</div>
+                <div>
+                  <b>主理人 ${p.host}</b>
+                  <div class="small">${p.hostStyle}</div>
+                </div>
+              </div>
+              <span class="pill">${p.vibe}</span>
             </div>
-            <div class="btns"><button class="btn" data-signup>${isSignedUp(p.id) ? '已提交报名' : '立即报名'}</button><button class="btn2" data-copy-share>复制补位文案</button><button class="btn2" data-nav="games">去配玩法</button></div>
+            <div class="fitCard">
+              <b>${p.scene}</b>
+              <span class="small">适合：${p.fit}</span>
+            </div>
+            <div class="progressWrap">
+              <div class="progressLabel">
+                <span>${stats.left > 0 ? `离成局还差 ${stats.left} 人` : '当前已经可以直接开喝'}</span>
+                <b>${stats.size}/${stats.cap}</b>
+              </div>
+              <div class="progressTrack"><i style="width:${fillRate(p)}%"></i></div>
+            </div>
+            <div class="quickFacts">
+              <div class="fact"><span>时间</span><b>${p.time}</b></div>
+              <div class="fact"><span>地点</span><b>${p.venue}</b></div>
+              <div class="fact"><span>今晚先玩</span><b>${(attachedGames()[0] || recommended()[0]).title}</b></div>
+            </div>
+            <div class="btns">
+              <button class="btn" data-signup>${isSignedUp(p.id) ? '已提交报名' : '立即报名'}</button>
+              <button class="btn2" data-copy-share>复制补位文案</button>
+              <button class="btn2" data-nav="games">去配玩法</button>
+              <button class="btn2" data-cycle-party>换一场看看</button>
+            </div>
           </div>
           <div class="section">
             <h3>本局已挂玩法</h3>
-            <p class="desc">这场局已经配好的默认玩法，打开就能继续推进节奏。</p>
-            <div class="grid">${attachedGames().map(g => g.search ? gameCard(g) : internalCard(g)).join('')}</div>
+            <p class="desc">这场局已经配好的默认玩法，重点不是“玩法库很多”，而是“到了桌上马上能接上节奏”。</p>
+            <div class="grid compactGrid">${attachedGames().map(g => g.search ? gameCard(g) : internalCard(g)).join('')}</div>
           </div>`;
       };
       const renderHost = () => {
         const p = party();
+        const tpl = hostTemplate();
         return `
           <div class="hero">
             <div class="eyebrow">Host desk</div>
-            <h1>发局与补位</h1>
-            <p class="sub">这是主理人操作区，按顺序把一场局发出去，再把人和玩法补齐。</p>
+            <h1>发局不是填表，是把一场局包装到别人愿意来。</h1>
+            <p class="sub">正式版把主理人的动作收口成三件事：先定局感，再挂玩法，最后一键复制可以发群的素材。</p>
           </div>
           <div class="panel" style="padding:16px">
             <h3>当前正在管理：${p.name}</h3>
             <p class="sub">${p.time} · ${p.venue}</p>
-            <div class="metrics">
-              <div class="metric"><span class="small">已占位</span><b>${partyStats(p).size}</b></div>
-              <div class="metric"><span class="small">待补位</span><b>${partyStats(p).left}</b></div>
-              <div class="metric"><span class="small">已挂玩法</span><b>${attachedGames().length}</b></div>
-            </div>
-            <div class="stepList">
-              <div class="stepItem"><b>1. 填局信息</b><span class="small">先把时间、地点、人数说清楚。</span></div>
-              <div class="stepItem"><b>2. 选今晚玩法</b><span class="small">给这场局挂 2-3 个最顺手的玩法。</span></div>
-              <div class="stepItem"><b>3. 复制补位文案</b><span class="small">把已经带玩法卖点的文案发到群里。</span></div>
+            <div class="quickFacts">
+              <div class="fact"><span>已占位</span><b>${partyStats(p).size}</b></div>
+              <div class="fact"><span>待补位</span><b>${partyStats(p).left}</b></div>
+              <div class="fact"><span>已挂玩法</span><b>${attachedGames().length}</b></div>
             </div>
           </div>
           <div class="section">
-            <h3>快速发起一局</h3>
-            <div class="toolbar">
-              <div class="field"><label>局标题</label><input class="input" placeholder="比如：周六 rooftop 鸡尾酒局"></div>
-              <div class="cols">
-                <div class="field"><label>时间</label><input class="input" placeholder="周六 20:30"></div>
-                <div class="field"><label>人数上限</label><input class="input" placeholder="8"></div>
+            <h3>先挑一个局感模板</h3>
+            <p class="desc">不要从空白开始。先选最像今晚气氛的一版，再微调时间、地点和话术。</p>
+            <div class="templateRow">
+              ${hostTemplates.map(i=>`<button type="button" class="templateChip ${state.hostTemplate===i.id?'active':''}" data-template="${i.id}">${i.name}</button>`).join('')}
+            </div>
+            <div class="previewCard" style="margin-top:12px">
+              <div class="coverKicker">即将发出去的样子</div>
+              <h3>${tpl.name}</h3>
+              <p class="sceneLine">${tpl.pitch}</p>
+              <div class="quickFacts">
+                <div class="fact"><span>时间</span><b>${tpl.time}</b></div>
+                <div class="fact"><span>人数</span><b>${tpl.cap}</b></div>
+                <div class="fact"><span>先挂玩法</span><b>${tpl.leadGame}</b></div>
               </div>
-              <div class="field"><label>地点</label><input class="input" placeholder="朝阳 / 三里屯"></div>
-              <div class="field"><label>局感文案</label><textarea class="textarea" placeholder="一句话说清楚这场局的气氛。"></textarea></div>
-              <div class="btns"><button class="btn" data-draft>保存草稿</button><button class="btn2" data-copy-share>复制补位文案模板</button></div>
+              <div class="shareBubble">${templateShareText(tpl)}</div>
+              <div class="btns">
+                <button class="btn" data-copy-template>复制这版发群文案</button>
+                <button class="btn2" data-nav="games">去挂今晚玩法</button>
+              </div>
+            </div>
+          </div>
+          <div class="section">
+            <h3>三步发出去</h3>
+            <div class="flow">
+              <div class="flowCard"><span class="flowNo">1</span><b>定局感</b><p class="small">先说清楚这场局是轻社交、认真喝，还是朋友带朋友的转场局。</p></div>
+              <div class="flowCard"><span class="flowNo">2</span><b>挂今晚玩法</b><p class="small">别给一堆选择，先挂 1 到 2 个最像这场局的玩法，方便别人一眼判断这场会不会无聊。</p></div>
+              <div class="flowCard"><span class="flowNo">3</span><b>发群素材</b><p class="small">复制短文案直接发群，真正能拉人的是一句话 + 一个玩法卖点，而不是整段说明。</p></div>
+            </div>
+          </div>
+          <div class="section">
+            <h3>快速改一下再发</h3>
+            <div class="toolbar">
+              <div class="field"><label>局标题</label><input class="input" placeholder="${tpl.name}"></div>
+              <div class="cols">
+                <div class="field"><label>时间</label><input class="input" placeholder="${tpl.time}"></div>
+                <div class="field"><label>人数上限</label><input class="input" placeholder="${tpl.cap}"></div>
+              </div>
+              <div class="field"><label>地点</label><input class="input" placeholder="${tpl.venue}"></div>
+              <div class="field"><label>局感文案</label><textarea class="textarea" placeholder="${tpl.pitch}"></textarea></div>
+              <div class="materialGrid">
+                <div class="materialCard"><b>发群素材 1：一句话短文案</b><span class="small">适合直接丢进微信群，不解释太多，重点只说时间、地点、差几人和先玩什么。</span></div>
+                <div class="materialCard"><b>发群素材 2：截图卡思路</b><span class="small">如果后面继续升级，可以把这场局做成一张可截图封面卡，强化传播感。</span></div>
+              </div>
+              <div class="btns"><button class="btn" data-draft>保存草稿</button><button class="btn2" data-copy-template>复制这版发群文案</button></div>
             </div>
           </div>`;
       };
@@ -396,7 +551,7 @@
           <div class="hero">
             <div class="eyebrow">Party games</div>
             <h1>不知道玩什么，就先让它替你选。</h1>
-            <p class="sub">先判断现在是两个人还是一桌人、想对战还是升温，再从内置玩法和微信优先的小程序游戏里直接给你 3 个建议。</p>
+            <p class="sub">玩法区不再像玩法百科，而是像今晚的桌上助理。先判断人够不够、气氛在哪个阶段，再直接告诉你现在最该玩什么。</p>
           </div>
           <div class="panel" style="padding:16px">
             <div class="field"><label>适合几个人</label><div class="chipGroup people" data-group="people">
@@ -415,13 +570,13 @@
           </div>
           <div class="section">
             <h3>今晚最适合你的 3 个</h3>
-            <p class="desc">重点不是网页直跳，而是帮你快速决定现在玩什么、去哪里搜、怎么拉全桌一起上。</p>
-            <div class="grid">${recommended().map(gameCard).join('')}</div>
+            <p class="desc">不是给你看一堆说明，而是帮你在 5 秒内决定：现在就玩哪个、去哪里搜、要不要挂到这场。</p>
+            <div class="grid compactGrid">${recommended().map(gameCard).join('')}</div>
           </div>
           <div class="section">
             <h3>全部玩法库</h3>
             <p class="desc">默认先给推荐 3 个，下面再看全部可选项。微信优先在前，H5 内工具放在后面。</p>
-            <div class="grid">${miniGames.filter(g => g.platform === '微信优先').map(gameCard).join('')}${Object.values(internalGames).map(internalCard).join('')}${miniGames.filter(g => g.platform !== '微信优先').map(gameCard).join('')}</div>
+            <div class="grid compactGrid">${miniGames.filter(g => g.platform === '微信优先').map(gameCard).join('')}${Object.values(internalGames).map(internalCard).join('')}${miniGames.filter(g => g.platform !== '微信优先').map(gameCard).join('')}</div>
           </div>`;
       };
       const renderTabs = () => tabsWrap.innerHTML = tabs.map(t => `<button type="button" class="tab ${state.view===t.id?'active':''}" data-tab="${t.id}" aria-label="${t.label}"><b>${t.icon}</b><span>${t.label}</span></button>`).join('');
@@ -443,7 +598,7 @@
         } else {
           view.innerHTML = renderGames();
         }
-        history.replaceState(null,'',`?view=${state.view}&party=${state.partyId}&v=3.8`);
+        history.replaceState(null,'',`?view=${state.view}&party=${state.partyId}&v=4.0`);
       };
       const openGame = id => {
         const g = miniGames.find(i=>i.id===id) || internalGames[id];
@@ -480,13 +635,20 @@
           closeSheet();
           return;
         }
-        const t = e.target.closest('[data-tab],[data-nav],[data-set],[data-copy-share],[data-signup],[data-copy-game],[data-open],[data-tool],[data-attach],[data-draft]');
+        const t = e.target.closest('[data-tab],[data-nav],[data-set],[data-copy-share],[data-signup],[data-copy-game],[data-open],[data-tool],[data-attach],[data-draft],[data-cycle-party],[data-template],[data-copy-template]');
         if (!t) return;
         if (t.dataset.tab) { state.view = t.dataset.tab; render(); return; }
         if (t.dataset.nav) { state.view = t.dataset.nav; render(); return; }
         if (t.dataset.set) { state[t.dataset.set] = t.dataset.val; render(); return; }
+        if (t.dataset.cycleParty !== undefined) { state.partyId = nextParty().id; render(); return; }
+        if (t.dataset.template) { state.hostTemplate = t.dataset.template; render(); return; }
         if (t.dataset.copyShare !== undefined) {
           copy(shareText(party()), '已复制补位文案');
+          flashButton(t, '已复制');
+          return;
+        }
+        if (t.dataset.copyTemplate !== undefined) {
+          copy(templateShareText(hostTemplate()), '已复制发群文案');
           flashButton(t, '已复制');
           return;
         }
