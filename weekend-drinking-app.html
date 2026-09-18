@@ -443,7 +443,7 @@
         } else {
           view.innerHTML = renderGames();
         }
-        history.replaceState(null,'',`?view=${state.view}&party=${state.partyId}&v=3.7`);
+        history.replaceState(null,'',`?view=${state.view}&party=${state.partyId}&v=3.8`);
       };
       const openGame = id => {
         const g = miniGames.find(i=>i.id===id) || internalGames[id];
@@ -456,6 +456,8 @@
           ? `<span class="badge">手机可玩</span><span class="badge">${g.platform}</span><span class="badge">${g.people}</span>`
           : `<span class="badge">H5 内直玩</span><span class="badge">${g.people}</span>`;
         $('#sheetAction').textContent = g.search ? (g.platform === '抖音补充' ? '复制抖音搜索词' : '复制微信搜索词') : g.action;
+        clearTimeout($('#sheetAction')._flashTimer);
+        $('#sheetAction').dataset.originalLabel = $('#sheetAction').textContent;
         if (g.search) {
           sheetGameArea.classList.add('hidden');
           sheetGameArea.innerHTML = '';
